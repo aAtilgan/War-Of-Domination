@@ -1,0 +1,42 @@
+3)Functional Requirements:
+
+	3.1 Main Menu
+
+This screen will let the user to get to other mandatory functions like play game or optional functions like "how to play" "credits" etc. It is the basic screen user will encounter when they first launch the game.
+
+ 	3.2 Start Game
+	When players press the start button by default player 1 will get first turn.There will be an indicator on a player's characters to let the user(s) know whose turn is being played at that moment.   Players will be able to pick one character from their team and play it; until there are no-longer idle characters in their disposal.When a player has no available characters to play turn will pass to opponent. The player with no-characters left alive loses the game resulting in opponent getting victorious. Players will have a limited space of movement each turn, when they finish the movement phase they will have variety of attacking options listed in hotkeys from 1 to 9.(Available options might change in future iterations as well as characters might have classes in future iterations.)  The map itself will contain both obstacles and passable objects as well as pits/water holes(Which would result in the death of the player.) etc. There will be 3 basic weapon types in players disposal; Direct line of sight(los) weapons which results in instant damage and a possibility to headshot for a multiplier to their damage. Explosive weaponary will create a knockback effect which will cause any characters in the field of effect to be washed off slightly. Third weapon type will be melee weapons which will also have a knockback effect. The game can be played with mouse only but it will also have keyboard support for hotkeys if players want to play faster. Mainly the objective of the game is to eliminate other player's all characters by any means.Currently there will be only 1 mode:
+
+3.2.1 Local Co-Op Multiplayer Mode:
+	This mode will be played by default when user selects "Start Game". This mode will enable user to pick a map from the list of available maps; it will also let the user to select the amount of characters will be in the game. This mode will put teams to seperate corners or pre-defined spawns in the selected map. 
+
+3.3 Save/Load Options:
+3.3.1 Load Game:
+	This option will be only available during main-menu. It will load a previously stored game from it's latest state and player turn. Load game might not work properly for different versions of the game.
+
+3.3.2 Save Game: This option will only be available if there is a game going on at that moment. Players will be able to save their games to any directory they pick to load them up later .
+
+3.4How To Play: User will be able to access this screen from the main menu or while playing the game by pressing "esc" to open a pop-up menu window.
+This screen will contain:
+-Game Mechanics(Knockback,Headshot,Melee, weapon types etc.)
+-Game Objective(s)
+-Turn management(Movement limits/Shooting/Available options(guard/stand still/aim etc.))
+-Map Mechanics(Obstacles, holes, passable objects).
+
+This screen will let users to start playing right away and since they can access these informations even while playing they will have a most basic gamepedia in their disposal. This will let players to learn the game much faster.
+
+
+3.5 Options:
+
+This screen will contain following options:
+-Volume(SFX/Music)
+-Resolution(Will re-open the game frame when exiting options)
+-Aim Assist(Will enable/disable a line of your aim while using Line Of Sight weaponary.)
+-Gamma(Adjust Brightness)
+-Change hotkeys for item access, character actions.(Note: These changes will be global and affect all players in the game.)
+
+3.6 Feedback:
+
+This screen will allow the user to send feedback to the developers about the game.
+
+3.7 Credits: This screen will let players know better about the developers behind the game; and contact them if they want to by giving their e-mail adresses. It will also contain a sliding text which will list the individual parts done to form the game by the developers.
