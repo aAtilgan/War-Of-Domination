@@ -1,0 +1,29 @@
+4.0 Non-Functional Requirements:
+
+
+4.1 Game Performance:
+	Since we are planning to add animations to every action in the game to some extend; we are going to make sure these animations won't cause any performance drops in the gameplay. The gameplay should be always smooth according to users eye's which means it should have a higher FPS rate than the monitor refresh rate(Which is usually 60~ by most standarts). The game also shouldn't strain the computer too much since it should be compatible with all systems available in the market, that can run java applications.
+
+4.2 Tile Options(HD Tiles/Shadowing Tiles/Animation Tiles):
+	The tiles we are going to use to form our maps will be picked from a high-quality  open-source tiles  for 2d  games. These tiles can even contain shadows on their own drawings which will enhance the quality of the game remarkably while keeping as little memory space as possible. Some tiles will also contain animations which is basically 2 images flipping constantly. This will allow the game to be much more real-world a-like in the eyes of the user.
+
+4.3 Non-Complex User-Interface:
+	Every user should be able to understand the basic options given that the players knows english. While doing this the UI shouldn't look too empty, so there will be some visual decorations as long as it doesn't makes the UI look too complicated. 
+	Another problem is the nature of turn-based games. The in-game screen usually scares people most of the time when they first see it. We will try to make it as simple as possible by adding simple options but a lot of flexible mechanics to these options to keep the gameplay deep enough and simple enough at the same time.(Like grenade tossing from a wall.,headshot option,pushing a player into a hole with melee option,  etc.)
+
+4.4Extending Options
+
+4.4.1 More Teams & Ally Options:
+           For the moment the game will support only 2 teams; but it could be easly manipulated by changing map spawns and team limitations; user(s) would be able to select the amount of teams to play a team game 2 versus 2 or Free For All.
+
+4.4.2 Map Maker:
+         The best way to keep a game alive is to give tools to the community that is compatible with the game. If community can get a free map-making tool which would allow them to create their own maps from a pre-defined tile list, re-playability of the game will increase significantly with new unique maps.
+4.4.3 Game Modes:
+       We will try to add depth into the game by adding minimal complexity and maximum gain.
+By adding new victory conditions; or new default starting conditions we will implement mods; which will let players to experience a different kind of gameplay.
+Example Mods:
+-Insta-Death(Every Character has 1 hit point.)
+-No Legs(Every character has %90 less movement range.)
+-None Left Behind(First player to lose a character loses the game.)
+-Control the Beacon(The first player who fills the "beacon" bar, by staying next to the beacon will win the game.)
+etc.
