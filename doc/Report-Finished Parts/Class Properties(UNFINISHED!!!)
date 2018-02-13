@@ -1,0 +1,237 @@
+!!!!Still needs Stationary objects class explanations % methods.
+Rest are complete.
+
+
+Map
+-ArrayList<Game Object> mapObjects
+-Point (int x,int y) size
+-int gravity
+-ArrayList<Character> characterList
+-ArrayList<Obstacle> obstacleList
+
+
+****This class contains all game objects and stores them. This class also holds a fixed sized display for these objects.
+
+
+Map Manager
+
+-ArrayList<Map> listOfMaps
++drawMapObjects(Map)
++updateMapObjects(Map)
++getObjectOnLocation(int x,int y)
++getCharacterLocation(Character ch)
++deleteObject(GameObject x)
++addObject(GameObject x)
++getCharacterList(Map x)
++getObjectList(Map x)
++initializeMap(Map x)
++loadMap(Map x)
++moveObject(Object x,Point (int x,int y))
+drawWeaponDestination()
+
+*****This class allows the manipulation of any object;
+-On a specific location
+-Has a specific ID
+-This way other classes can access to an objects location and properties given that they know the object ID
+In addition this class is also responsible for adding / removing objects to map.Rendering the map by calling draw() methods of each object.Loading map from a saved directory.
+
+
+Attack Manager
++Point getWeaponPos(Weapon x)
++Vector drawAttackVector(Point start,Angle direction)
++boolean pierce(Object x)
++Image explode(Weapon x)
++boolean attack(Weapon x,Vector direction)
++collides(Object x)
+
+This class calculates the attack vector by specifying a start and end point. With help of game manager class this class calculates the travel path of projectile and; processes all objects on the path. Determines if the projectile passes / pierces or explodes when contacting these obstacles.
+
+Movement Manager
++boolean move(Character x)
++boolean canMoveThrough(Object x)
++Point getCharacterPos(Character x)
+
+This class basically does the checking of a movement action for game manager class to determine the next position of a character after a movement takes place.
+
+Action Manager
+
++Action createAction(Type x)
++boolean canPerform(Action x)
+
+This is a parent class to movement manager and attack manager. It creates the actions temporarily and stores them while the action is being performed in case of an attack action.
+It also helps game manager class by allowing the knowledge of a certain action can be performed or not. This has many parameters like.
+-Is there an obstacle
+-Is it right players turn
+-The character can move/shoot ?
+This class checks all these and returns a boolean.
+Inventory Manager
++ArrayList<Object> getInventory(Character x)
++boolean addToInventory(Character x)
++boolean removeFromInventory(Character x)
+
+This class allows the management of character inventories. It gets a chracter as a parameter and manipulates that character's inventory by
+-Adding
+-Removing
+
+Input Manager
+//TODO
+
+UI Manager
++startGame()
++void initializeGamePlayScreen(Dimension(int width,int height));
++void returnToMainMenu();
++void returnToPauseMenu();
++boolean quitGame();
++void getGameSettings();
+
+This class lets the user to communicate with game manager while the game is not started. It sends all the user choices like game settings; map settings;
+Main Menu
+-ArrayList<JButton> listOfOptions
++JPanel initializeSettingsScreen();
++JPanel initializeCreditsScreen();
++JPanel initializeGamePreperation();
++void exit();
++getSettings();
+
+Main Menu class initializes the different screens in main menu:
+-Settings
+-Credits
+-Start
+-Exit
+
+In addition it sends the user inputs to specific manager classes such as:
+-Sound settings goes to Sound manager
+-Hotkey settings goes to Input Manager
+-Resolution settings goes to Map Manager
+All these happen with the help of UI manager class.
+
+Game Manager
+-ActionManager actMngr
+-MapManager mapMngr
+-UIManager UIMngr
+-InputManager inputMngr
+-InventoryManager invMngr
+-Game gameInstance
+
++boolean moveCharacter(Character x)
++boolean attack(Character x,Weapon wpn)
++void turn()
++boolean isTurn(Player p)
++boolean isFinished(Game game)
++void pauseGame(Game game)
++endGame(Game game)
++initializeGame()
+
+
+Game manager is the class that does all the logic of the game with association of all manager classes in the project.
+
+It is responsible for the following tasks:
+-Start the Game by initializing map for specified settings and spawning the character(s).
+-Keep the map manager updated for all the changes done to the objects as game escalates.(Some objects might get destroyed or damaged etc.)
+-Keep the inventory manager informed about the changes done to characters ammunitions etc.
+While doing these it should also keep associating with input manager to make sure user inputs doesn't get stalled too much while doing other stuff.
+
+
+Game Object
+-Point (int x,int y) position
+-Point (int x,int y) size
+-Image
++contains()
++getSize()
++Point getPosition()
+
+This class holds all basic properties for objects in any map. Like:
+-position
+-size
+-image
+It can also call contains() method from each predecessor class to get a list ArrayList of points that are inside the boundaries of the object.(This will make it easier to do collusion checks in game manager.)
+This class also does the similar call for draw() method which can be used to draw many different objects with the same method because of inheritance.
+Most importantly this class divides into 2 sub classes which are
+-Stationary
+-NonStationary
+This is a crucial division because our non-stationary objects are not tile based while all of our stationary objects are tile based. Tile based means that they are some sort of a rectangle without special curves or edges.
+
+NonStationary
+
+-speed
+-max Velocity
++move(Point(int x,int y))
++contains()//This method is overloaded because of the unique shapes of non-stationary objects
++getPixelSize()
+
+
+NonStationary class holds extra speed and max velocity values from its ancestor Game Object. In addition to these since these objects are not stationary they reqiure some sort of movement.
+With the help of move() function any class that uses these objects can easly manipulate the location of non-stationary objects.
+Since there are currently 2 different type of non-stationary objects in our game this class naturally divides into 2 as well. These are:
+-Character
+-Weapon
+
+Weapon
+-int damage
+-int areaOfEffect
+-double edgeEfficency
++explode()
++calculateDamage(int distance)
+
+This class holds general variables for any weapon in the game in addition to all the properties it's ancestor classes has.
+-damage holds the value that would damage any destructable obstacle or tile for the specified value.
+-areaOfEffect holds the value that would apply the damage for each single pixel in the specified radius. areaOfEffect will create a imaginary circle with radius defines as that variable. Every damageable object is going to be damaged inside that imaginary circle when weapon is exploded.
+AreaOfEffect can be set to 0 to make an effect of a rifle for example.Or 10 to make an effect of a grenade.
+-edgeEfficency is a value that will only matter if weapon has areaOfEffect.
+This variable will hold a value from 0.1 to 1.0. It will be basically multiplied with the damage according to the distance from the center of explosion. 
+This class also calculates the damage done by performing some simple comparisons as follows;
+1-It checks if areaOfEffect is 0; if it is then it returns the damage reduced by distance of the shot.
+2-If areaOfEffect is not 0 it calculates the damage according to the position of the object to be damaged with respect to the center of explosion. It applies the edge effectiveness value based on the value of areaOfEffect and the distance of object to the center. After this it returns the damage value.
+
+
+
+Knife
+
+draw() //Overloaded operator
+
+This object basically holds a unique image for the "knife" that is going to be shown on the map after the player performs the "attack" which is going to throw a rotating knife at specified point.
+
+
+Bullet
+
+draw()//Overloaded operator
+
+Bullet object holds a unique image for the "bullet" to be represented on map when a player chooses to attack with a rifle. It will show a bullet with a trial behind on the map when attack is performed.
+
+Grenade
+ArrayList<Image> gifOfExplosion
+draw()//Overloaded operator
+explode()//Overloaded operator
+
+Grenade holds a unique image for the "grenade" to be represented on map when a player chooses to throw a grenade.
+In addition to other weapons this  weapon holds a series of images that simulates an explosion when changed in a rapid succession. This will be invoked when explode() method is called by map manager to show an explosion on map.
+
+
+
+
+Character
+-int life
+-int max_Life
+-int min_Life
+-int level?
+-ArrayList<Object> characterInventory
+-boolean hasMoved
+-boolean hasAttacked
++boolean kill()
++boolean spawn()?
++boolean damage(int x)
++draw()
++heal()
+
+Character class holds all variables that is necessary for the map manager to access  in case we need to change these variables.(These variables are an addition to already obvious parameters like position that is inherited from the classes ancestor.(GameObject)).
+These additional properties that are unique to a character are:
+-inventory array
+-current life value
+-hasMoved,hasAttacked booleans.
+
+
+
+
+
+
+
