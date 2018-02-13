@@ -1,0 +1,21 @@
+Dynamic Models
+
+Sequence Diagrams
+
+Start Game
+
+Scenario: User starts the game
+
+User wants to start the game. He/She enters the main menu. Chooses to start the game, by the help of the UI Manager user is taken to the game settings screen. Then, after user picks up the settings, that the user prefers these settings are sent to the Game Manager. Game Manager initializes the game by firstly telling the map manager to load the selected map by the user. After the map is loaded and initialized Map manager creates the map and every object inside the map. After the creation of map is completed, by the help of the Action Manager movement and attack managers are created. Attack manager allows the game to create unique weapons at any given time in the game. To create, unique direction attacks that have a explosion effect on its own collision. This explosion then sent to the Game Screen.
+
+Scenario: User wants to change settings
+
+User wants to apply new settings to the game. He/She will enter the setting screen by the help of Main Menu. UI Manager will collect new settings according to the inputs from the user. When user finishes the applying of the game settings, UI Manager will send new resolution to the Game Manager and Sound Manager passes the sound based settings to Game Manager to apply them.
+
+Scenario: User wants to move to a direction
+
+The user wants to move and presses the key from keyboard. The command of keyboard calls the move(character, dir) from Game Manager. Game Manager checks if this action can be performed by sending the parameters to Movement Manager. If this action can be performed, Game Manager gives move object command to the Map Manager and the specified character moves to that direction. 
+
+Scenario: User wants to shoot
+
+User presses the keyboard and aims for a specific direction. These parameters are passed to game manager from Input Manager. Game manager checks if this action can be performed and sends the action to the action manager. Action manager calculates the travel of the particle by the help of Attack manager. Attack manager creates the weapon; and draws the weapons attack animation on map. Attack manager checks all tile's on the way of the weapon. When a collision occurs; with the help of map manager it determines if the particle destroys / pierces the object. If it does not pierce; map manager calls the explode function of the weapon and ends the weapons life span.
