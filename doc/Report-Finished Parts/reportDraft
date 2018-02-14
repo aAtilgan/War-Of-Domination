@@ -1,0 +1,229 @@
+1.	Introduction
+As members of group 1H, we decided to design and implement an arcade game called “War of Domination”.
+We choose this game as this game allows us to work with the Object & Oriented Environment, 
+as there are many instances that we can implement as objects in game, different type of obstacles, 
+different game modes, different maps, different type of characters.
+As mentioned above, the main reason for choosing such game is its structure. We think that War of Domination is suitable for 
+the object oriented environment. Moreover, such suitability allows us to enlarge the features of the game 
+and add new features as we need them. For now the feature list of the game is shown below.
+-	Single Player Mode
+-	Local Multiplayer Mode
+-	Different Game Mode Types
+-	Variety of Obstacles
+-	Weapons (knife, rifle, bomb)
+-	Fluent Graphics
+-	Different Maps
+We will be implementing our game in Java, as Java is mother language for most of us, we are planning to use 
+Java Swing library as it allows us to design graphics and UI design over standard Java distribution. 
+Our main aim by implementing this game is to get familiar with the object oriented design principles and the concepts of the principles 
+that we will be learning in CS 319 through the semester.
+2.	Overview
+2.1 Gameplay
+War of Domination will be a both single and multiplayer 2D game. 
+A player of this game is going to be represented by a warrior.  
+Each player will be allowed to control his/her warrior. 
+The aim of the player is to survive by killing the other player, by other meaning killing the all enemies. 
+This game will be turn based strategy game, where two opposing teams fight in a battleground until one team is eliminated. 
+Each team gets 2-4 characters each round depending on the map. The game will be played with a fixed camera and an overhead view,
+so players can keep track of everything at all times. As it is a turn based game, players will alternate between turns and each turn 
+the player has to choose a character to move/shoot/attack, once the player is done, or runs out of time, the opposing team’s turn starts.
+The game will have different map consisting of various elements.
+2.2	Map
+The map of this game will be consisting from the tiles, bricks, and obstacles.
+The most basic component of the map will be the tiles. The map will then be further built on those tiles. 
+For different game modes, there will be different types of maps consisting from different kind of tiles.  
+Each turn the player can choose to move a character across the tiles, however there will be a limit to the amount of distance a character
+can move each turn. The map will consist of obstacles which will restrict movement of characters across them. 
+
+2.3 Weapons
+All characters will be equipped with a standard gun and a grenade. 
+These weapons will be used to defeat the opposing team. The map may provide some power-ups which can upgrade weapons or present special 
+weapons. There will be no limit to the ammunition of the standard weapons.
+2.4 Power- Ups
+The map will summon power-ups randomly. 
+These power ups will provide players with a time-limited advantage. The power-ups can include: 
+HP-Regen, Weapon-Upgrade, Wall-Breaker etc. 
+2.5 Traps
+The map will consist of different randomly placed. 
+These traps can be visible or hidden. Some examples of these traps can be ditches, mines, etc.
+2.6 Menu
+The Main-Menu in the game will be a button based title screen. 
+The options will include, NEW GAME, LEVEL SELECT, INSTRUCTIONS and SETTINGS.
+2.7 Obstacles
+Obstacles will be a major part of the map. The map will be designed in way such that the players will have to navigate their way through
+these obstacles, and try to keep control of advantageous points throughout the map. The map will consist of various types of obstacles.
+Some obstacles will be breakable through the use of weapons, some obstacles will not be breakable but will be pierce-able through bullets
+, in this way the player can shoot through these obstacles to hit the enemy, but they will not be able to pass through it. 
+There will also be some unbreakable bullet proof obstacles, which can be used by players to avoid incoming enemy shots.  
+2.8 Settings
+	Player will be able to choose to change the settings of the game. 
+  He/She will be able to change the sound and the movement.
+3. Functional Requirements
+3.1 Main Menu
+This screen will let the user to get to other mandatory functions like play game or optional functions like "how to play" "credits" etc. It is the basic screen user will encounter when they first launch the game.
+3.2 Start Game 	
+When players press the start button by default player 1 will get first turn. 
+There will be an indicator on a player's characters to let the user(s) know whose turn is being played at that moment.
+Players will be able to pick one character from their team and play it; until there are no-longer idle characters in their disposal.
+When a player has no available characters to play turn will pass to opponent. 
+The player with no-characters left alive loses the game resulting in opponent getting victorious. 
+Players will have a limited space of movement each turn, when they finish the movement phase they will have variety of attacking options
+listed in hotkeys from 1 to 9.(Available options might change in future iterations as well as characters might have classes in future 
+iterations.)  The map itself will contain both obstacles and passable objects as well as pits/water holes (Which would result in the 
+death of the player.) etc. There will be 3 basic weapon types in players’ disposal; direct line of sight (los) weapons which results 
+in instant damage and a possibility to headshot for a multiplier to their damage. Explosive weaponry will create a knockback effect 
+which will cause any characters in the field of effect to be washed off slightly. Third weapon type will be melee weapons which will 
+also have a knockback effect. The game can be played with mouse only but it will also have keyboard support for hotkeys if players 
+want to play faster. Mainly the objective of the game is to eliminate other player's all characters by any means. Currently there 
+will be only 1 mode:
+3.2.1 Local Co-Op Multiplayer Mode:
+	This mode will be played by default when user selects "Start Game". 
+  This mode will enable user to pick a map from the list of available maps; 
+  it will also let the user to select the amount of characters will be in the game. 
+  This mode will put teams to separate corners or pre-defined spawns in the selected map. 
+3.3 Save/Load Options
+3.3.1 Load Game
+	This option will be only available during main-menu.
+  It will load a previously stored game from its latest state and player turn. 
+  Load game might not work properly for different versions of the game.
+3.3.2 Save Game
+This option will only be available if there is a game going on at that moment. 
+Players will be able to save their games to any directory they pick to load them up later.
+3.4 How To Play
+ User will be able to access this screen from the main menu or while playing the game by pressing "esc" to open a pop-up menu window.
+This screen will contain:
+-Game Mechanics (Knockback,Headshot,Melee, weapon types etc.)
+-Game Objective(s)
+-Turn management (Movement limits/Shooting/Available options (guard/stand still/aim etc.))
+-Map Mechanics (Obstacles, holes, passable objects).
+This screen will let users to start playing right away and since they can access this information even while playing they will 
+have a most basic gamepedia in their disposal. This will let players to learn the game much faster.
+3.5 Options
+This screen will contain following options:
+-Volume (SFX/Music)
+-Resolution (Will re-open the game frame when exiting options)
+-Aim Assist (Will enable/disable a line of your aim while using Line Of Sight weaponry.)
+-Gamma (Adjust Brightness)
+-Change hotkeys for item access, character actions.(Note: These changes will be global and affect all players in the game.)
+3.6 Feedback
+This screen will allow the user to send feedback to the developers about the game.
+3.7 Credits
+ This screen will let players know better about the developers behind the game; 
+ and contact them if they want to by giving their e-mail addresses.
+ It will also contain a sliding text which will list the individual parts done to form the game by the developers.
+4.0 Non-Functional Requirements:
+4.1 Game Performance
+	Since we are planning to add animations to every action in the game to some extend; 
+  we are going to make sure these animations won't cause any performance drops in the gameplay. 
+  The gameplay should be always smooth according to users eye's which means it should have a higher 
+  FPS rate than the monitor refresh rate(Which is usually 60~ by most standarts). 
+  The game also shouldn't strain the computer too much since it should be compatible with all systems available in the market 
+  that can run java applications.
+4.2 Tile Options (HD Tiles/Shadowing Tiles/Animation Tiles):
+	The tiles we are going to use to form our maps will be picked from a high-quality open-source tiles for 2d games. 
+  These tiles can even contain shadows on their own drawings which will enhance the quality of the game remarkably while keeping as 
+  little memory space as possible. Some tiles will also contain animations which is basically 2 images flipping constantly. 
+  This will allow the game to be much more real-world a-like in the eyes of the user.
+4.3 Non-Complex User-Interface:
+	Every user should be able to understand the basic options given that the players know English. 
+  While doing this the UI shouldn't look too empty, so there will be some visual decorations as long as it doesn't makes the UI look too
+  complicated. 
+	Another problem is the nature of turn-based games. The in-game screen usually scares people most of the time when they first see it.
+  We will try to make it as simple as possible by adding simple options but a lot of flexible mechanics to these options to keep 
+  the gameplay deep enough and simple enough at the same time.(Like grenade tossing from a wall, headshot option, pushing a player 
+  into a hole with melee option,  etc.)
+4.4 Extending Options
+4.4.1 More Teams & Ally Options:
+           For the moment the game will support only 2 teams; but it could be easly manipulated by changing map spawns and team
+           limitations; user(s) would be able to select the amount of teams to play a team game 2 versus 2 or Free For All.
+4.4.2 Map Maker:
+         The best way to keep a game alive is to give tools to the community that is compatible with the game. 
+         If community can get a free map-making tool which would allow them to create their own maps from a pre-defined tile list, 
+        re-playability of the game will increase significantly with new unique maps.
+
+4.4.3 Game Modes:
+       We will try to add depth into the game by adding minimal complexity and maximum gain.
+By adding new victory conditions; or new default starting conditions we will implement mods; 
+which will let players to experience a different kind of gameplay.
+Example Mods:
+-Insta-Death (Every Character has 1 hit point.)
+-No Legs (Every character has %90 less movement range.)
+-None Left Behind (First player to lose a character loses the game.)
+-Control the Beacon (The first player who fills the "beacon" bar, by staying next to the beacon will win the game.)
+etc.
+
+5 System Models
+5.1 Use-Case Model
+ 
+// TO DO UNAS’S WRITINGS
+ 
+5.2 Dynamic Models
+
+5.2.1 Sequence Diagrams
+
+5.2.1.1 Start Game
+
+Scenario: User starts the game
+User wants to start the game. He/She enters the main menu. Chooses to start the game, 
+by the help of the UI Manager, user is taken to the game settings screen. 
+Then, after user picks up the settings, that the user prefers these settings are sent to the Game Manager. 
+Game Manager initializes the game by firstly telling the map manager to load the selected map by the user. 
+After the map is loaded and initialized Map manager creates the map and every object inside the map. 
+After the creation of map is completed, by the help of the Action Manager Movement and attack managers are created. 
+Attack manager allows the game to create unique weapons at any given time in the game. 
+To create, unique direction attacks that have an explosion effect on its own collision.
+This explosion then sent to the Game Screen.
+
+5.2.1.2 Settings
+Scenario: User wants to change settings
+User wants to apply new settings to the game. He/She will enter the setting screen by the help of Main Menu. 
+UI Manager will collect new settings according to the inputs from the user. 
+When user finishes the applying of the game settings, 
+UI Manager will send new resolution to the Game Manager 
+and Sound Manager passes the sound based settings to Game Manager to apply them.
+
+5.2.1.3 Movement Mechanism
+Scenario: User wants to move to a direction
+
+The user wants to move and presses the key from keyboard. 
+The command of keyboard calls the move(character, dir) from Game Manager. 
+Game Manager checks if this action can be performed by sending the parameters to Movement Manager. 
+If this action can be performed, Game Manager gives move object command to the Map Manager and the specified character moves to that 
+direction. 
+  
+5.2.1.4 Bullet Creation and Fire Interaction
+
+Scenario: User wants to shoot
+
+User presses the keyboard and aims for a specific direction. These parameters are passed to game manager from Input Manager. 
+Game manager checks if this action can be performed and sends the action to the action manager.
+Action manager calculates the travel of the particle by the help of Attack manager. 
+Attack manager creates the weapon; and draws the weapons attack animation on map. 
+Attack manager checks all tile's on the way of the weapon. When a collision occurs; 
+with the help of map manager it determines if the particle destroys / pierces the object.
+If it does not pierce; map manager calls the explode function of the weapon and ends the weapons life span. 
+  
+5.2.2 Activity Diagram  
+The activity diagram above,  illustrates the running system of the game.
+Activity diagram explanation:
+To start with, the system waits the user to input to check either user wants to play singleplayer, or multiplayer.
+User can directly exit the game, where the system goes to final node. If the user starts the game, it can be either multi or single 
+player game. After this choice, game starts, and system initializes the game.
+After the game started, user is able to choose move, shoot, and stay. 
+Hence in activity diagram, the process of this is divided into three parts.
+In the first case, move, as the user tries to move, system checks if  there is any obstacle in the path. 
+If there is, system will check, if it is passable or non passable. 
+Player moves and the  its position, direction changes according to its move. 
+If user reaches the destination he/she can either stay or start shooting.
+In the second case, shoot, as the user chooses shooting system checks for the collision. 
+If there is a collision there will be 3 subcases, player, obstacle, and border.
+1st case: The bullet hits the player. System reduces the health point of the user and then check if there are any enemies left. 
+If there are no enemies left, game ends, game reaches the final node. If not user's turn finishes.
+2nd case: The bullet hits the obstacle. System will check either the obstacle is pierceable or not. 
+If the obstacle is pierceable then system goes back for checking the collision. 
+If not user's turn finishes, and the players are switched.
+3rd case: If the user chooses to stay. System will finish the turn and switch the player.
+System continues this process until the user exits the game or the game is over.
+
+ 
+
