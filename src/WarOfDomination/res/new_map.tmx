@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="base_out.tsx"/>
+ <tileset firstgid="1025" source="terrain.tsx"/>
+ <tileset firstgid="2049" source="tilea_newMap.tsx"/>
+ <layer name="Objects" width="30" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgQICljAw0A/jMHrV31N7hDED+pxSPgoEF9IoPfPbgspeTA4GJEcdlL6lyIHPlgVgBzXyYGC3t1QdiAzTzYWKU2osOJIHmSRFhJqV60IEmUL8WiWaQo2egAf8AuXeo21sJNKdqAPzQCbSziwx7iS2LKNWDDuiVf9HLFGrm35HWriPFXmq2q4aCf2lpLwCJoR22EA4AAA==
+  </data>
+ </layer>
+ <layer name="Water" width="30" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3NsQ0AIQzF0DTZ9GASjkmAXdiKvwFdJMBPcm0zAK/43Cyp7LHfot+vavC36dfVCP4CN5i+jy9fvsD5FnBDwNkQDgAA
+  </data>
+ </layer>
+ <layer name="Background" width="30" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACs2WaQoCMQyFhcHB/y4XcLmIywVczuDZPKUpGAiPvDaddsDAIzoT882zqfa8WiwuoqUoxXLlayvaNWTtre/vokeAexSdGjJyz8Tv+BP6XYs2Jvf2i1x97r3oYPJUv7Y/cr317eVXc4nb6pfNJ84RcntJefg8o1GPQF/Mb2SdsCfmIeOLXY/MpQarGcxr5qu07jV+R6ee+cIo+bXr793Da97zprA9rAc2X6XrzC9+Frmerxpuzm+O2+qX+c5xVSfo69UzsTlh9cq0fjU+Y1wa3qxH/apsv1ykutys57jqcyqX7fu5uZF9Pwf3KvU30dvMx7vAZfdquE+pfzVybb8oV6NmfXtya9Y3BeO27t8UeK6w3NbzOf4f4HmScaPntFKu+X1m3/OU8PxGuT31L9wvW0ye9hAOAAA=
+  </data>
+ </layer>
+</map>

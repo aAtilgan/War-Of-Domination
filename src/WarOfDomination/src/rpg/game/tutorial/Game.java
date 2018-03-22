@@ -33,7 +33,7 @@ public class Game extends StateBasedGame implements Observer {
 		this.getState(worldMap).init(gc, this);
 		this.getState(settings).init(gc, this);
 		this.enterState(startMenu);
-		msc.playTitleMusic();
+		//msc.playTitleMusic();
 	}
 
 	@Override

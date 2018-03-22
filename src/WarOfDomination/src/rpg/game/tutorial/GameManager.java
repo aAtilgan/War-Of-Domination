@@ -1,6 +1,7 @@
 package rpg.game.tutorial;
 
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -21,7 +22,12 @@ public class GameManager extends BasicGameState {
 	Character hero;
 	CharacterView heroView;
 	CharacterController chControl;
-
+	
+	
+	//Enemy Properties
+	Enemy enemy;
+	EnemyView enemyView;
+	
 	// Map Properties
 	MapControl map;
 	MapView mapView;
@@ -44,19 +50,17 @@ public class GameManager extends BasicGameState {
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
+		
 		in = new InputManager();
 		map = new MapControl();
 		map.loadMap();
-		int objectLayer= map.getLayerIndex("Objects");
-		int ID= map.getId(0, 6, objectLayer);
-		System.out.println("Object Layer: " + objectLayer + " ID: " + ID);
 				
 		mapView = new MapView(map.getMap());
 
 		sound = new Sound("res/fire1.ogg");
 
-		hero = new Character();
-		heroView = new CharacterView();
+		hero = new Character(0);
+		heroView = new CharacterView("ch");
 		hero.addObserver(heroView);
 		hero.setX(0);
 		hero.setY(0);
@@ -64,12 +68,24 @@ public class GameManager extends BasicGameState {
 		chControl = new CharacterController(heroView,map);
 
 		hero.notifyObservers();
+		
+		enemy=new Enemy(1);
+		enemyView=new EnemyView("ch1");
+		enemy.addObserver(enemyView);
+		enemy.setX(0);
+		enemy.setY(0);
+		
+		enemy.notifyObservers();
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		
 		mapView.render(hero.getX(), hero.getY());
-		heroView.draw();
+		g.setColor(Color.white);
+		g.drawString("Hero X: " + (hero.getX()+300) + "\n Hero Y: " + (hero.getY()+300), 400, 20);
+		heroView.draw(gc,g);
+		enemyView.draw();
 		if (isShoot) {
 			renderBullets(g);
 		}

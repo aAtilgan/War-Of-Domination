@@ -1,25 +1,16 @@
 package rpg.game.tutorial;
 
-import org.newdawn.slick.Animation;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class Character extends java.util.Observable{
-	float health;
-	public final float MAX_HEALTH = 400;
-	boolean alive;
-	String talk;
+public class Character extends Moving{
 	
-	private float positionX = 0;
-	private float positionY = 0;
-	private float shiftX = 300;
-	private float shiftY = 300;
-	private float speed=.1f;
-
-	public Character() throws SlickException {
-		health=MAX_HEALTH;
+	public Character(int character_id) throws SlickException {
+		super(0);
 		this.alive = true;
 		talk="";
+		setShiftX(300);
+		setShiftY(300);
+		setSpeed(.1f);
 	}
 
 	public void setRandomTalk() {
@@ -48,54 +39,4 @@ public class Character extends java.util.Observable{
 		}
 		
 	}
-	/* alive setter and getter */
-	public boolean isAlive() {
-		return alive;
-	}
-
-	public void setAlive(boolean state) {
-		this.alive = state;
-	}
-
-	
-	/* location setters and getters */
-	public float getX() {
-		return positionX;
-	}
-
-	public float getY() {
-		return positionY;
-	}
-
-	public void setX(float x) {
-		positionX = x;
-		setChanged();
-		notifyObservers();
-		clearChanged();
-	}
-
-	public void setY(float y) {
-		positionY = y;
-		setChanged();
-		notifyObservers();
-		clearChanged();
-	}
-	
-	public float getShiftX() {
-		return shiftX;
-	}
-
-	public float getShiftY() {
-		return shiftY;
-	}
-
-	public float getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(float speed) {
-		this.speed = speed;
-	}
-
-
 }

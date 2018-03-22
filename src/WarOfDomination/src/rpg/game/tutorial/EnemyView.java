@@ -1,21 +1,20 @@
 package rpg.game.tutorial;
 
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
-import org.newdawn.slick.*;
-
-public class CharacterView extends MovingView {
-	// Properties
-	HealthBar healthbar;
-
+public class EnemyView extends MovingView {
 	int[] duration = { 200, 200, 200 };
 
-	public CharacterView(String str) throws SlickException {
+	public EnemyView(String str) throws SlickException {
 		super();
-		healthbar = new HealthBar();
 		walkUp = new Image[3];
 		walkDown = new Image[3];
-		walkLeft = new Image[3];
 		walkRight = new Image[3];
+		walkLeft = new Image[3];
 
 		for (int i = 1; i < 4; i++) {
 			walkUp[i - 1] = new Image("res/" + str + "_up_" + i + ".png");
@@ -44,9 +43,8 @@ public class CharacterView extends MovingView {
 		}
 	}
 
-	public void draw(GameContainer gc, Graphics g) throws SlickException {
-		this.getMainAnimation().draw(ch.getShiftX(), ch.getShiftY());
-		healthbar.render(gc, g, ch.getHealth(), ch.MAX_HEALTH);
+	public void draw() throws SlickException {
+		this.getMainAnimation().draw(ch.getShiftX() + 200, ch.getShiftY()+200);
 		
 	}
 
@@ -60,4 +58,5 @@ public class CharacterView extends MovingView {
 		if (str == "left")
 			bucky = left;
 	}
+
 }

@@ -6,7 +6,7 @@ import rpg.game.tutorial.Common.Direction;
 
 public class MapControl {
 	Map map;
-	String loc = "res/map.tmx";
+	String loc = "res/timmy_map.tmx";
 
 	public boolean loadMap() throws SlickException {
 		map = new Map(loc);
@@ -25,7 +25,7 @@ public class MapControl {
 		return this.map.getLayerIndex(str);
 	}
 
-	public boolean canMove(Character ch, float delta, Direction dir) {
+	public boolean canMove(Moving ch, float delta, Direction dir) {
 		int layerIndex = map.getLayerIndex("Objects");
 		if (dir == Direction.UP) {
 			if (map.getTileId(((int) (320 - ch.getX()) / 32), (((int) (320 - ch.getY() - 16 - delta * .1f) /32)),
