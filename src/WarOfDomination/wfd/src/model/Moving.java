@@ -1,5 +1,7 @@
 package model;
 
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 public class Moving extends java.util.Observable{
 	//Properties
@@ -16,8 +18,11 @@ public class Moving extends java.util.Observable{
 	private float shiftY;
 	private float speed;
 	public int character_id;
-	
-	public Moving(int character_id) {
+	Sound sound;
+	Sound knife_sound;
+	public Moving(int character_id) throws SlickException {
+		sound = new Sound("res/fire1.ogg");
+		knife_sound=new Sound("res/knife_sound.ogg");
 		this.character_id=character_id;
 		positionX=0;
 		positionY=0;
@@ -167,5 +172,13 @@ public class Moving extends java.util.Observable{
 	}
 	
 	//INNER FUNCTIONS
+	public void bulletSound() {
+		if(this.weaponChoice==0 && this.ammo >0)
+			sound.play(1, 0.05f);
+		else if(this.weaponChoice==2 && this.shell >0)
+			sound.play(1, 0.05f);
+		else if(this.weaponChoice==1)
+			knife_sound.play(1,0.05f);
+	}
 
 }

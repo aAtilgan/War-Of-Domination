@@ -13,26 +13,25 @@ public class Character extends Moving{
 		setSpeed(.1f);
 	}
 
-	public String setRandomTalk() {
-		int rand = (int)(Math.random()*10 + 1);
+	public String setRandomTalk(int rand) {
 		switch (rand) {
-        case 1:  talk = "Only Van Helsing can hunt me.";
+        case 1:  talk = "Scrum meetings are more fun than this game..";
         break;
-        case 2:  talk = "Still a better love story than twilight.";
+        case 2:  talk = "Bu kodun içinde emek, ter, kan, gözyasi var";
         break;
-        case 3:  talk = "Trolololololo.";
+        case 3:  talk = "Let's have a quick quiz.";
         break;
         case 4:  talk = "Wanna be my friend?";
         break;
         case 5:  talk = "I'm bored.";
         break;
-        case 6:  talk = "I have a dream.";
+        case 6:  talk = "";
         break;
         case 7:  talk = "Haters gonna hate.";
         break;
-        case 8:  talk = "The internet is dark and full of spoilers.";
+        case 8:  talk = "Researcher, Academician, Software Engineer, not always in that order.";
         break;
-        case 9: talk = 	"Eto'o is done.";
+        case 9: talk = 	"Eto'o Bitmis";
         break;
         case 10: talk = "Give me your command.";
         break;

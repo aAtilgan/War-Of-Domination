@@ -1,25 +1,21 @@
 package view;
 
+import java.awt.Font;
+
 import org.lwjgl.input.Mouse;
+import org.lwjgl.openal.AL;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class PauseMenu extends BasicGameState {
-	// Properties
-	// VARIABLES
-	int posX = 90, posY = 70;
-	public String exit = "Exit?";
-	// Sonradan eklenecek
-	public String options = "Options";
-	public String help = "Help";
-
-	public String cont = "Continue";
+	private Image resumeButton;
+	private Image exitButton;
 
 	public PauseMenu(int state) {
 
@@ -30,70 +26,48 @@ public class PauseMenu extends BasicGameState {
 	}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		
+		resumeButton = new Image("res/resume_button.png");
+		exitButton = new Image("res/exit_button.png");
+		exitButton = exitButton.getScaledCopy(0.5f);
+		resumeButton = resumeButton.getScaledCopy(0.5f);
 	}
 
 	// Draws stuff on screen
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.setColor(Color.white);
-		// Exit Button
-		g.drawString(exit, 305, 300);
-		g.drawRect(300, 300, 55, 20);
+		g.setColor(Color.orange);
+		g.setFont(new TrueTypeFont(new Font("Pixeled Regular", Font.PLAIN, 30), true));
+		g.drawString("PAUSED!", 400, 100);
 
-		// Continue Button
-		g.drawString(cont, 305, 150);
-		g.drawRect(300, 150, 90, 20);
-
-		// Options Button
-		g.drawString(options, 305, 200);
-		g.drawRect(300, 200, 80, 20);
-
-		// Help Button
-		g.drawString(help, 305, 250);
-		g.drawRect(300, 250, 55, 20);
-
+		resumeButton.draw(400, 150, new Color(0.8f, 0.8f, 0.8f, 1f));
+		exitButton.draw(400, 250, new Color(0.8f, 0.8f, 0.8f, 1f));
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		// TODO Auto-generated method stub
-		Input input = gc.getInput();
-		int xpos = Mouse.getX();
-		int ypos = Mouse.getY();
-		//System.out.println("X: " + xpos + " Y: " + ypos);
-		if (input.isKeyDown(Input.KEY_UP)) {
-			posY -= 1;
+		float x = Mouse.getX();
+		float y = Mouse.getY();
+		//System.out.println("X: " + x + "Y: " + y);
+		if (((x <= 570) && (x >= 404)) && ((y >= 500) && (y <= 545))) {
+			resumeButton.setImageColor(1f, 1f, 1f, 1f);
+			if (Mouse.isButtonDown(0)) {
+				sbg.enterState(1);
+			}
+		} else {
+			resumeButton.setImageColor(0.8f, 0.8f, 0.8f, 1f);
 		}
-		if ((xpos > 300 && xpos < 390) && (ypos > 528 && ypos < 550)) {
-			exit = "Exit!";
-			if (input.isMouseButtonDown(0)) {
+
+		if (((x <= 570) && (x >= 400)) && ((y >= 400) && (y <= 440))) {
+			exitButton.setImageColor(1f, 1f, 1f, 1f);
+			if (Mouse.isButtonDown(0)) {
+				AL.destroy();
 				System.exit(0);
 			}
-		} else
-			exit = "Exit?";
-
-		if ((xpos > 280 && xpos < 400) && (ypos > 310 && ypos < 340)) {
-			cont = "Continue!";
-			if (input.isMouseButtonDown(0)) {
-				//sbg.enterState(0);
-				//game.enterState(0);
-			}
-		} else
-			cont = "Continue?";
-
-		if ((xpos > 280 && xpos < 380) && (ypos > 260 && ypos < 300)) {
-			options = "Options!";
-			if (input.isMouseButtonDown(0)) {
-				sbg.enterState(2);
-				// Common.msc.playOptionsMusic();
-			}
-		} else
-			options = "Options?";
+		}
 	}
 
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 5;
+		return 3;
 	}
 }
