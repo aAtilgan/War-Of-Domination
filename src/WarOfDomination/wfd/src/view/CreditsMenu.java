@@ -1,14 +1,12 @@
 package view;
-import java.awt.Font;
 
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
+
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 public class CreditsMenu extends BasicGameState implements InformativeView{
@@ -34,11 +32,10 @@ public class CreditsMenu extends BasicGameState implements InformativeView{
 		g.setBackground(Color.black);
 		
 		
-		g.setFont(new TrueTypeFont (new Font("Pixeled Regular", Font.PLAIN, 35), true));
+		
 		g.setColor(Color.orange);
 		g.drawString("CREDITS", 100, 100);
 		g.setColor(new Color (0.3f, 0.4f, 0.6f));
-		g.setFont(new TrueTypeFont (new Font("Pixeled Regular", Font.PLAIN, 30), true));
 		g.drawString("AYBERK TECIMER", 100, 200);
 		g.drawString("AKANT ATILGAN", 100, 250);
 	}

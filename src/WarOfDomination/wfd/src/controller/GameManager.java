@@ -102,6 +102,7 @@ public class GameManager extends BasicGameState {
 		g.drawString("Hero X: " + (320 - hero.getX()) + "\n Hero Y: " + (320 - hero.getY()), 400, 20);
 
 		g.drawString(hero.setRandomTalk(random_count), hero.getShiftX() + 10, hero.getShiftY() - 10);
+		g.drawString(enemy.setRandomTalk(random_count), enemy.getShiftX()- enemy.getX() +10, enemy.getShiftY()-enemy.getY()-10 );
 		// g.drawString(enemy.setRandomTalk(random_count), enemy.getX() + 10,
 		// enemy.getY() -10 );
 		// Enemy set random talk location problem!!!
@@ -227,6 +228,7 @@ public class GameManager extends BasicGameState {
 			// RELOAD
 			if (input.isKeyPressed(Input.KEY_RCONTROL)) {
 				heroView.ch.reload();
+				hero.reloadSound();
 			}
 			
 			// CHOOSE WEAPON TYPE
@@ -266,6 +268,7 @@ public class GameManager extends BasicGameState {
 
 			if (input.isKeyPressed(Input.KEY_R)) {
 				enemyView.ch.reload();
+				enemy.reloadSound();
 			}
 
 			// ENEMY SHOOT

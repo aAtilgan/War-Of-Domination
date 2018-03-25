@@ -1,6 +1,6 @@
 package view;
 
-import java.awt.Font;
+
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.openal.AL;
@@ -9,7 +9,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -35,7 +34,7 @@ public class PauseMenu extends BasicGameState {
 	// Draws stuff on screen
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.setColor(Color.orange);
-		g.setFont(new TrueTypeFont(new Font("Pixeled Regular", Font.PLAIN, 30), true));
+		
 		g.drawString("PAUSED!", 400, 100);
 
 		resumeButton.draw(400, 150, new Color(0.8f, 0.8f, 0.8f, 1f));

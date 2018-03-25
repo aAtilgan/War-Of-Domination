@@ -11,18 +11,27 @@ public class Moving extends java.util.Observable{
 	private float ammo;
 	private float shell;
 	private int weaponChoice;
+	
 	public final float MAX_HEALTH=400;
 	boolean alive;
 	String talk;
+	public int character_id;
+	
 	private float shiftX;
 	private float shiftY;
 	private float speed;
-	public int character_id;
+	
+	
+	//Sound
 	Sound sound;
 	Sound knife_sound;
+	Sound reload;
+	Sound empty;
 	public Moving(int character_id) throws SlickException {
 		sound = new Sound("res/fire1.ogg");
 		knife_sound=new Sound("res/knife_sound.ogg");
+		reload=new Sound("res/reloading.ogg");
+		empty=new Sound("res/empty_sound.ogg");
 		this.character_id=character_id;
 		positionX=0;
 		positionY=0;
@@ -174,11 +183,19 @@ public class Moving extends java.util.Observable{
 	//INNER FUNCTIONS
 	public void bulletSound() {
 		if(this.weaponChoice==0 && this.ammo >0)
-			sound.play(1, 0.05f);
+			sound.play(1, 0.06f);
 		else if(this.weaponChoice==2 && this.shell >0)
-			sound.play(1, 0.05f);
+			sound.play(1, 0.06f);
 		else if(this.weaponChoice==1)
-			knife_sound.play(1,0.05f);
+			knife_sound.play(1,0.06f);
+		else if(this.weaponChoice==0 && this.ammo ==0)
+			empty.play(1, 0.06f);
+		else if(this.weaponChoice==2 && this.shell ==0)
+			empty.play(1, 0.06f);
+	}
+	public void reloadSound() {
+		if(this.weaponChoice!=1)
+			reload.play(1, 0.06f);
 	}
 
 }

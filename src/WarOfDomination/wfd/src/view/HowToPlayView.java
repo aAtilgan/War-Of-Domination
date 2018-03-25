@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Font;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -8,7 +7,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -46,7 +44,6 @@ public class HowToPlayView extends BasicGameState implements InformativeView {
 		g.setColor(Color.orange);
 		
 		g.drawString(str[6], 250, 500);
-		g.setFont(new TrueTypeFont (new Font("Pixeled Regular", Font.PLAIN, 30), true));
 		g.drawString("How To Play", 300, 50);
 	}
 
