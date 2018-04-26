@@ -1,5 +1,8 @@
 package view;
-
+/**
+ * @author Ayberk
+ *
+ */
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -19,7 +22,7 @@ public class PlayScreen extends BasicGameState{
 		// TODO Auto-generated method stub
 		//in = new InputManager();
 		map = new MapControl();
-		map.loadMap();
+		//map.loadMap();
 
 		mapView = new MapView(map.getMap());
 	}

@@ -1,5 +1,8 @@
 package view;
-
+/**
+ * @author Ayberk
+ *
+ */
 /*
  * This class changes its current screen with respect to gamestate
  * But it also enables change of screen without changing the game state

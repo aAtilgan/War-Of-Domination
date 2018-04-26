@@ -1,5 +1,8 @@
 package view;
-
+/**
+ * @author Ayberk
+ *
+ */
 //import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;

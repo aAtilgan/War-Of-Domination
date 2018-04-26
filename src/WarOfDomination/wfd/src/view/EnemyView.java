@@ -1,9 +1,9 @@
 package view;
-
+/**
+ * @author Ayberk
+ *
+ */
 import org.newdawn.slick.SlickException;
-
-import model.HealthBar;
-
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

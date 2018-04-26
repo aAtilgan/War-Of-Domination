@@ -1,5 +1,8 @@
 package view;
-
+/**
+ * @author Ayberk
+ *
+ */
 import model.Map;
 
 public class MapView {

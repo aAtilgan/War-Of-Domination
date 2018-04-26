@@ -1,9 +1,10 @@
 package view;
 
-
+/**
+ * @author Ayberk
+ *
+ */
 import org.newdawn.slick.*;
-
-import model.HealthBar;
 
 public class CharacterView extends MovingView {
 	// Properties

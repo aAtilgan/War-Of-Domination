@@ -1,6 +1,9 @@
 package view;
 
-
+/**
+ * @author Ayberk
+ *
+ */
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -12,6 +15,8 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import controller.GameManager;
+
 public class GameOverView extends BasicGameState{
 	private Sound game_over;
 	private int time=0;
@@ -20,8 +25,10 @@ public class GameOverView extends BasicGameState{
 	private float alpha2 = 0f;
 	Input input;
 	Image background;
+	int winner;
 	public GameOverView(int gameover) {
 		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
@@ -38,18 +45,12 @@ public class GameOverView extends BasicGameState{
 	@Override
 	public void render(GameContainer container, StateBasedGame arg1, Graphics g) throws SlickException 
 	{
+		
 		g.drawImage(background, 0,0, null);
 		g.setColor(new Color(1f, 1f, 1f, alpha1));
 		alpha1 = alpha1 + 0.02f;
-		/*g.drawString("GAME",
-				400, 300);
-		g.setColor(new Color(1f, 1f, 1f, alpha2));
-		if(alpha1>=1f)
-			alpha2 = 0.02f + alpha2;
-		g.drawString("OVER",
-				450 , 300);*/
-		
-		g.drawString("Press Enter to Return Main Menu", 600, 500);
+		//g.drawString("Hero Score: " + GameManager.hero_win, 100, 100); Kazanan gösterici
+		g.drawString("Press Enter to Return Main Menu" , 600, 500);
 		g.drawString("",
 				container.getScreenWidth()/2-150f , container.getScreenHeight()/2);
 	}
