@@ -83,7 +83,7 @@ public class BulletManager {
 			{
 				aBullet.setX(aBullet.getX() + (float) (1 * Math.cos(Math.toRadians(aBullet.getangle()))));
 				aBullet.setY(aBullet.getY() + (float) (1 * Math.sin(Math.toRadians(aBullet.getangle()))));
-				if (Math.hypot(characterX - aBullet.getX(), characterY - aBullet.getY()) < 5) 
+				if (Math.hypot(characterX - aBullet.getX(), characterY - aBullet.getY()) < 10) 
 				{ 
 					listOfBullets.remove(aBullet);
 					ch.setHealth(ch.getHealth()-10);

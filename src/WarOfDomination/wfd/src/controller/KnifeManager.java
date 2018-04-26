@@ -60,7 +60,7 @@ public class KnifeManager {
 			{
 				aKnife.setX(aKnife.getX() + (float) (1 * Math.cos(Math.toRadians(aKnife.getangle()))));
 				aKnife.setY(aKnife.getY() + (float) (1 * Math.sin(Math.toRadians(aKnife.getangle()))));
-				if (Math.hypot(characterX - aKnife.getX(), characterY - aKnife.getY()) < 6) 
+				if (Math.hypot(characterX - aKnife.getX(), characterY - aKnife.getY()) < 13) 
 				{ 
 					//HITS CHARACTER
 					listOfKnifes.remove(aKnife);

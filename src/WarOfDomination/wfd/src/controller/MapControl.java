@@ -1,5 +1,8 @@
 package controller;
-
+/**
+ * @author Ayberk
+ *
+ */
 import org.newdawn.slick.SlickException;
 
 import model.Map;
@@ -9,11 +12,11 @@ import model.Common.Direction;
 public class MapControl {
 	Map map;
 	BulletManager bulletMngr;
-	String loc = "res/timmy_map.tmx";
+	//String loc = "res/timmy_map.tmx";
 	int layerIndex = -10000;
 	int object;
 
-	public boolean loadMap() throws SlickException {
+	public boolean loadMap(String loc) throws SlickException {
 		map = new Map(loc);
 		bulletMngr = new BulletManager();
 		return true;

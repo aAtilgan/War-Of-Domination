@@ -1,5 +1,8 @@
 package controller;
-
+/**
+ * @author Ayberk
+ *
+ */
 import org.lwjgl.input.Mouse;
 import org.lwjgl.openal.AL;
 import org.newdawn.slick.*;

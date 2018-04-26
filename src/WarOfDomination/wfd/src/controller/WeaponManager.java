@@ -1,5 +1,8 @@
 package controller;
-
+/**
+ * @author Ayberk
+ *
+ */
 import org.newdawn.slick.tiled.TiledMap;
 
 import model.Bullet;
