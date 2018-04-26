@@ -1,5 +1,8 @@
 package model;
-
+/**
+ * @author Ayberk
+ *
+ */
 import org.newdawn.slick.SlickException;
 
 public class Character extends Moving{
@@ -29,7 +32,7 @@ public class Character extends Moving{
         break;
         case 7:  talk = "Haters gonna hate.";
         break;
-        case 8:  talk = "Researcher, Academician, Software Engineer, not always in that order.";
+        case 8:  talk = "";
         break;
         case 9: talk = 	"Eto'o Bitmis";
         break;

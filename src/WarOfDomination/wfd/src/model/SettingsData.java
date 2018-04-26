@@ -1,5 +1,8 @@
 package model;
-
+/**
+ * @author Ayberk
+ *
+ */
 public class SettingsData extends java.util.Observable {
 	// data
 	int volume;
@@ -8,7 +11,7 @@ public class SettingsData extends java.util.Observable {
 	boolean paused;
 
 	public SettingsData() {
-		volume = 100;
+		volume = 20;
 		brightness = 25;
 		fullscreen = false;
 		paused = false;

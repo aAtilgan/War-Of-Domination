@@ -1,5 +1,8 @@
 package model;
-
+/**
+ * @author Ayberk
+ *
+ */
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 

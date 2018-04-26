@@ -1,5 +1,8 @@
 package model;
-
+/**
+ * @author Ayberk
+ *
+ */
 import java.util.Observable;
 import java.util.Observer;
 
@@ -47,7 +50,10 @@ public class Game extends StateBasedGame implements Observer {
 		this.getState(worldMap).init(gc, this);
 		this.getState(settings).init(gc, this);
 		this.enterState(startMenu);
-		msc.playTitleMusic();
+		
+		msc.volume=0.1f;
+		//msc.playTitleMusic(); MÜZÝÐÝ BURADAN AÇ
+		
 	}
 
 	@Override

@@ -1,5 +1,8 @@
 package model;
-
+/**
+ * @author Ayberk
+ *
+ */
 public class Common {
 	public enum Direction {
 		UP, RIGHT, LEFT, DOWN
