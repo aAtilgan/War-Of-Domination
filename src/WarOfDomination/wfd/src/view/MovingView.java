@@ -1,8 +1,5 @@
 package view;
-/**
- * @author Ayberk
- *
- */
+
 import java.util.Observable;
 import org.newdawn.slick.*;
 

@@ -1,8 +1,5 @@
 package view;
-/**
- * @author Ayberk
- *
- */
+
 import org.newdawn.slick.fills.GradientFill;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.*;

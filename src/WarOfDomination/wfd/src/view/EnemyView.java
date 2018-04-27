@@ -1,9 +1,9 @@
 package view;
-/**
- * @author Ayberk
- *
- */
+
 import org.newdawn.slick.SlickException;
+
+import model.HealthBar;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,6 +12,8 @@ import org.newdawn.slick.Image;
 public class EnemyView extends MovingView {
 	HealthBar healthbar;
 	WeaponBar weaponBar;
+	static final int halfSizeX = 8;
+	static final int halfSizeY = 8;
 	int[] duration = { 200, 200, 200 };
 
 	public EnemyView(String str) throws SlickException {
@@ -51,7 +53,7 @@ public class EnemyView extends MovingView {
 	}
 
 	public void draw(GameContainer gc, Graphics g)  throws SlickException {
-		this.getMainAnimation().draw((ch.getShiftX())- ch.getX(), ((ch.getShiftY())- ch.getY()));
+		this.getMainAnimation().draw(ch.getX() - halfSizeX, ch.getY() - halfSizeY);
 		healthbar.render(gc, g, ch.getHealth(), ch.MAX_HEALTH,1);
 		weaponBar.render(gc, g, ch.getWeaponChoice(), 1,(int) ch.getAmmo(),(int) ch.returnShell());
 		

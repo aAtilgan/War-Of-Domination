@@ -1,15 +1,16 @@
 package view;
 
-/**
- * @author Ayberk
- *
- */
+
 import org.newdawn.slick.*;
+
+import model.HealthBar;
 
 public class CharacterView extends MovingView {
 	// Properties
 	HealthBar healthbar;
 	WeaponBar weaponBar;
+	static final int halfSizeX = 8;
+	static final int halfSizeY = 8;
 
 	int[] duration = { 200, 200, 200 };
 
@@ -50,7 +51,7 @@ public class CharacterView extends MovingView {
 	}
 
 	public void draw(GameContainer gc, Graphics g) throws SlickException {
-		this.getMainAnimation().draw(ch.getShiftX(), ch.getShiftY());
+		this.getMainAnimation().draw(ch.getX() - halfSizeX, ch.getY() - halfSizeY);
 		healthbar.render(gc, g, ch.getHealth(), ch.MAX_HEALTH,0);
 		weaponBar.render(gc, g, ch.getWeaponChoice(), 0,(int) ch.getAmmo(),(int) ch.returnShell());
 		
