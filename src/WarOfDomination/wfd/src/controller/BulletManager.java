@@ -60,30 +60,23 @@ public class BulletManager {
 	
 	
 
-	public void updateBullet(Weapon aBullet, float screenPosX, float screenPosY, TiledMap map) 
+	public void updateBullet(Weapon aBullet, float mapPosX, float mapPosY, TiledMap map) 
 	{
 		int layerIndex = map.getLayerIndex("Objects");
 		ch = aBullet.getTarget();
-		if(ch.character_id == 0)
-		{
-			characterX = 320;
-			characterY = 320 + 4;
-		}
-		else
-		{
-			characterX = ch.getShiftX()- ch.getX();
-			characterY = (ch.getShiftY()- ch.getY()) + 4;
-		}
+		characterX = ch.getX();
+		characterY = ch.getY();
+
 
 		
-		if (((aBullet.getX() - screenPosX) / 32 > 0) && ((aBullet.getY() - screenPosY) / 32 > 0) // harita dýsý check
-				&& ((aBullet.getY() - screenPosY) / 32 < 30) && ((aBullet.getX() - screenPosX) / 32 < 34)) { 
-			if (map.getTileId((((int) (aBullet.getX() - screenPosX) / 32)), ((int) (aBullet.getY() - screenPosY) / 32), // tile'a carpýyo mu check
+		if (((aBullet.getX() - mapPosX) / 32 > 0) && ((aBullet.getY() - mapPosY) / 32 > 0) // harita dýsý check
+				&& ((aBullet.getY() - mapPosY) / 32 < 30) && ((aBullet.getX() - mapPosX) / 32 < 34)) { 
+			if (map.getTileId((((int) (aBullet.getX() - mapPosX) / 32)), ((int) (aBullet.getY() - mapPosY) / 32), // tile'a carpýyo mu check
 					layerIndex) == 0) 
 			{
 				aBullet.setX(aBullet.getX() + (float) (1 * Math.cos(Math.toRadians(aBullet.getangle()))));
 				aBullet.setY(aBullet.getY() + (float) (1 * Math.sin(Math.toRadians(aBullet.getangle()))));
-				if (Math.hypot(characterX - aBullet.getX(), characterY - aBullet.getY()) < 10) 
+				if (Math.hypot(characterX - aBullet.getX(), characterY - aBullet.getY()) < 3) 
 				{ 
 					listOfBullets.remove(aBullet);
 					ch.setHealth(ch.getHealth()-10);

@@ -14,7 +14,7 @@ import java.util.*;
 public class KnifeManager {
 
 	ArrayList<Knife> listOfKnifes;
-	Moving ch;
+	Moving ch,shooter;
 
 	float characterX,characterY;
 	public KnifeManager() 
@@ -37,30 +37,22 @@ public class KnifeManager {
 	
 	
 
-	public void updateKnife(Knife aKnife, float screenPosX, float screenPosY, TiledMap map) 
+	public void updateKnife(Knife aKnife, float mapPosX, float mapPosY, TiledMap map) 
 	{
 		int layerIndex = map.getLayerIndex("Objects");
 		ch = aKnife.getTarget();
-		if(ch.character_id == 0)
-		{
-			characterX = 320;
-			characterY = 320 + 4;
-		}
-		else
-		{
-			characterX = ch.getShiftX()- ch.getX();
-			characterY = (ch.getShiftY()- ch.getY()) + 4;
-		}
+		characterX = ch.getX();
+		characterY = ch.getY();
 
 		
-		if (((aKnife.getX() - screenPosX) / 32 > 0) && ((aKnife.getY() - screenPosY) / 32 > 0) // harita dýsý check
-				&& ((aKnife.getY() - screenPosY) / 32 < 30) && ((aKnife.getX() - screenPosX) / 32 < 34)) { 
-			if (map.getTileId((((int) (aKnife.getX() - screenPosX) / 32)), ((int) (aKnife.getY() - screenPosY) / 32), // tile'a carpýyo mu check
+		if (((aKnife.getX() - mapPosX) / 32 > 0) && ((aKnife.getY() - mapPosY) / 32 > 0) // harita dýsý check
+				&& ((aKnife.getY() - mapPosY) / 32 < 30) && ((aKnife.getX() - mapPosX) / 32 < 34)) { 
+			if (map.getTileId((((int) (aKnife.getX() - mapPosX) / 32)), ((int) (aKnife.getY() - mapPosY) / 32), // tile'a carpýyo mu check
 					layerIndex) == 0) 
 			{
 				aKnife.setX(aKnife.getX() + (float) (1 * Math.cos(Math.toRadians(aKnife.getangle()))));
 				aKnife.setY(aKnife.getY() + (float) (1 * Math.sin(Math.toRadians(aKnife.getangle()))));
-				if (Math.hypot(characterX - aKnife.getX(), characterY - aKnife.getY()) < 13) 
+				if (Math.hypot(characterX - aKnife.getX(), characterY - aKnife.getY()) < 3) 
 				{ 
 					//HITS CHARACTER
 					listOfKnifes.remove(aKnife);
