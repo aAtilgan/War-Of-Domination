@@ -1,8 +1,5 @@
 package model;
-/**
- * @author Ayberk
- *
- */
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -19,7 +16,7 @@ public class S0und implements Observer {
 		msc=new Music("res/main_theme.ogg");
 		if (on)
 			msc.loop();
-		volume = 1f;
+		volume = 100f;
 	}
 	public void changeVolume(float change) {
 		volume += change;

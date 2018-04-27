@@ -2,10 +2,7 @@ package model;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-/**
- * @author Ayberk
- *
- */
+
 public class Weapon {
 	
 	

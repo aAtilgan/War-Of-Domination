@@ -1,8 +1,5 @@
 package model;
-/**
- * @author Ayberk
- *
- */
+
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;

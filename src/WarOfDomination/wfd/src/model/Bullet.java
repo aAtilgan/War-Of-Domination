@@ -1,8 +1,5 @@
 package model;
-/**
- * @author Ayberk
- *
- */
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;

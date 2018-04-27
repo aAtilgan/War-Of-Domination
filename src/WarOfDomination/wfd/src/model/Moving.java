@@ -1,8 +1,5 @@
 package model;
-/**
- * @author Ayberk
- *
- */
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
@@ -14,27 +11,16 @@ public class Moving extends java.util.Observable{
 	private float ammo;
 	private float shell;
 	private int weaponChoice;
-	
 	public final float MAX_HEALTH=400;
 	boolean alive;
 	String talk;
-	public int character_id;
-	
-	private float shiftX;
-	private float shiftY;
 	private float speed;
-	
-	
-	//Sound
+	public int character_id;
 	Sound sound;
 	Sound knife_sound;
-	Sound reload;
-	Sound empty;
 	public Moving(int character_id) throws SlickException {
 		sound = new Sound("res/fire1.ogg");
 		knife_sound=new Sound("res/knife_sound.ogg");
-		reload=new Sound("res/reloading.ogg");
-		empty=new Sound("res/empty_sound.ogg");
 		this.character_id=character_id;
 		positionX=0;
 		positionY=0;
@@ -52,19 +38,6 @@ public class Moving extends java.util.Observable{
 		return positionY;
 	}
 	
-	public void setShiftX(float x) {
-		shiftX=x;
-		setChanged();
-		notifyObservers();
-		clearChanged();
-	}
-	
-	public void setShiftY(float y) {
-		shiftY=y;
-		setChanged();
-		notifyObservers();
-		clearChanged();
-	}
 	public void setX(float x) {
 		positionX = x;
 		setChanged();
@@ -77,14 +50,6 @@ public class Moving extends java.util.Observable{
 		setChanged();
 		notifyObservers();
 		clearChanged();
-	}
-	
-	public float getShiftX() {
-		return shiftX;
-	}
-
-	public float getShiftY() {
-		return shiftY;
 	}
 
 	public float getSpeed() {
@@ -149,6 +114,11 @@ public class Moving extends java.util.Observable{
 
 	}
 	
+	public void heal(int amount)
+	{
+		this.health = this.health + amount;
+	}
+	
 	public boolean canShoot()
 	{
 		if(this.ammo <= 0)
@@ -186,19 +156,11 @@ public class Moving extends java.util.Observable{
 	//INNER FUNCTIONS
 	public void bulletSound() {
 		if(this.weaponChoice==0 && this.ammo >0)
-			sound.play(1, 0.06f);
+			sound.play(1, 0.05f);
 		else if(this.weaponChoice==2 && this.shell >0)
-			sound.play(1, 0.06f);
+			sound.play(1, 0.05f);
 		else if(this.weaponChoice==1)
-			knife_sound.play(1,0.06f);
-		else if(this.weaponChoice==0 && this.ammo ==0)
-			empty.play(1, 0.06f);
-		else if(this.weaponChoice==2 && this.shell ==0)
-			empty.play(1, 0.06f);
-	}
-	public void reloadSound() {
-		if(this.weaponChoice!=1)
-			reload.play(1, 0.06f);
+			knife_sound.play(1,0.05f);
 	}
 
 }
