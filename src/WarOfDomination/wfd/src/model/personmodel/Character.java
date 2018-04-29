@@ -1,4 +1,4 @@
-package model;
+package model.personmodel;
 /**
  * @author Ayberk
  *

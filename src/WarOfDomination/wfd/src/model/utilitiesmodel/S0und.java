@@ -1,4 +1,4 @@
-package model;
+package model.utilitiesmodel;
 /**
  * @author Ayberk
  *
@@ -14,7 +14,7 @@ public class S0und implements Observer {
 	private Music msc;
 	private Sound sound;
 	boolean on=true;
-	float volume;
+	public float volume;
 	public void playTitleMusic() throws SlickException {
 		msc=new Music("res/main_theme.ogg");
 		if (on)

@@ -1,4 +1,4 @@
-package model;
+package model.personmodel;
 /**
  * @author Ayberk
  *
@@ -200,5 +200,11 @@ public class Moving extends java.util.Observable{
 		if(this.weaponChoice!=1)
 			reload.play(1, 0.06f);
 	}
+
+	public void heal(int amount)
+	{
+		this.health = this.health + amount;
+	}
+	
 
 }
