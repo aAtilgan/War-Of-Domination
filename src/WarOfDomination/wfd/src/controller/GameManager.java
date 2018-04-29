@@ -1,4 +1,6 @@
 package controller;
+import java.util.ArrayList;
+
 /**
  * @author Ayberk
  *
@@ -18,9 +20,13 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import model.AmmoBox;
 import model.Character;
 import model.Enemy;
+import model.HealthBox;
 import model.Knife;
+import model.RoundData;
+import model.Weapon;
 import model.Common.Direction;
 import view.CharacterView;
 import view.EnemyView;
@@ -28,6 +34,7 @@ import view.MapView;
 
 public class GameManager extends BasicGameState {
 	private static final int game_over = 4;
+	private static final int story_mode=7;
 	// To show the scores of the players
 	public static int hero_win = 0;
 	public static int enemy_win = 0;
@@ -64,38 +71,85 @@ public class GameManager extends BasicGameState {
 	// Background Image
 	Image background;
 	WeaponManager weaponManager;
+	PickupManager pickupManager;
 	boolean lock = false;
 	boolean renderRespectToHero = true;
 	int direction;
 
 	public GameManager(int worldmap) {
 		weaponManager = new WeaponManager();
+		pickupManager = new PickupManager();
 	}
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-
+		RoundData.num_of_bullet_enemy=0;
+		RoundData.num_of_bullet_hero=0;
+		weaponManager = new WeaponManager();
+		pickupManager = new PickupManager();
+		//TESTING FIELD
+		//TESTING FIELD
 		in = new InputManager();
 		map = new MapControl();
-		map.loadMap(map3_name);
+		map.setX(0);
+		map.setY(0);
+		
+		if(RoundData.round==1) {
+			map.loadMap(map1_name);
+		}else if(RoundData.round==2) {
+			map.loadMap(map2_name);
+		}else if(RoundData.round==3) {
+			map.loadMap(map3_name);
+		}
 
 		mapView = new MapView(map.getMap());
 
 		hero = new Character(0);
 		heroView = new CharacterView("ch");
 		hero.addObserver(heroView);
-		hero.setX(0);
-		hero.setY(0);
-
+		if(RoundData.round==1) {
+			hero.setX(320);
+			hero.setY(320);
+			pickupManager.addHpBox(300, 450, 30);
+			pickupManager.addHpBox(300, 450, 30);
+		}else if(RoundData.round==2) {
+			hero.setX(170);
+			hero.setY(320);
+			pickupManager.addHpBox(300, 450, 30);
+		}else if(RoundData.round==3) {
+			//3.HERO MAP
+			hero.setX(170);
+			hero.setY(320);
+		}
+		
+		
 		chControl = new CharacterController(heroView, map);
 		hero.notifyObservers();
-
+		
 		enemy = new Enemy(1);
 		enemyView = new EnemyView("ch1");
-		enemyControl = new EnemyController(enemyView, map);
 		enemy.addObserver(enemyView);
-		enemy.setX(0);
-		enemy.setY(0);
+		
+		/*hero.setX(0);
+		hero.setY(0);*/
+		if(RoundData.round==1) {
+			enemy.setX(500);
+			enemy.setY(500);
+		}else if(RoundData.round==2) {
+			enemy.setX(750);
+			enemy.setY(500);
+		}else if(RoundData.round==3) {
+			//3.Enemy MAP
+			enemy.setX(700);
+			enemy.setY(400);
+		}
+	
+		
+	
+		enemyControl = new EnemyController(enemyView, map);
+		
+		/*enemy.setX(0);
+		enemy.setY(0);*/
 
 		enemy.notifyObservers();
 		direction = 0;
@@ -104,24 +158,23 @@ public class GameManager extends BasicGameState {
 	@Override
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		
 		if (renderRespectToHero)
-			mapView.render(hero.getX(), hero.getY());
+			mapView.render(map.getX(), map.getY());
 		g.setColor(Color.white);
-		// g.drawString("Hero X: " + (320 - hero.getX()) + "\n Hero Y: " + (320 -
-		// hero.getY()), 400, 20);
-
-		g.drawString(hero.setRandomTalk(random_count), hero.getShiftX() + 10, hero.getShiftY() - 10);
-		g.drawString(enemy.setRandomTalk(random_count), enemy.getShiftX() - enemy.getX() + 10,
-				enemy.getShiftY() - enemy.getY() - 10);
+		g.drawString("Hero X On Map: " + (hero.getX()- map.getX()) + "\n Hero Y On Map: " + (hero.getY() - map.getY()), 400, 20);
+		
+		g.drawString(hero.setRandomTalk(random_count), hero.getX() + 10, hero.getY() - 10);
 		// g.drawString(enemy.setRandomTalk(random_count), enemy.getX() + 10,
 		// enemy.getY() -10 );
 		// Enemy set random talk location problem!!!
-		// g.drawString("" + hero.getHealth(), 400, 50);
+		g.drawString("" + hero.getHealth(), 400, 50);
 		heroView.draw(gc, g);
 		enemyView.draw(gc, g);
 		if (isShoot) {
 			weaponManager.renderWeapons(g);
 		}
+		pickupManager.renderPickups(g);
 	}
 
 	@Override
@@ -134,14 +187,21 @@ public class GameManager extends BasicGameState {
 		if (!this.isGameOver()) {
 			in.getInputs(gc, sbg, delta);
 			isShoot = updateBullets();
+			pickupManager.update(hero, enemy);
 		} else {
 			if(winner==1) {
 				enemy_win++;
 			}else {
 				hero_win++;
 			}
-			sbg.getState(game_over).init(gc, sbg);
-			sbg.enterState(game_over);
+			if(RoundData.round==4) {
+				sbg.getState(game_over).init(gc, sbg);
+				sbg.enterState(game_over);
+			}else {
+				sbg.getState(story_mode).init(gc, sbg);
+				sbg.enterState(story_mode);
+			}
+			
 		}
 
 		if (in.key.paused) {
@@ -165,13 +225,109 @@ public class GameManager extends BasicGameState {
 			int type = 0;
 			if (weaponManager.returnWeaponsList().get(i) instanceof Knife)
 				type = 1;
-			weaponManager.updateWeapon(weaponManager.returnWeaponsList().get(i), hero.getX(), hero.getY(), map.getMap(),
+			weaponManager.updateWeapon(weaponManager.returnWeaponsList().get(i), map.getX(), map.getY(), map.getMap(),
 					type);
 		}
 
 		return true;
 	}
-
+	public void counterMoveAll(Direction a,int delta)
+	{
+		ArrayList<AmmoBox> listOfAmmoBoxes = pickupManager.getAmmoBoxList();
+		ArrayList<HealthBox> listOfHealthBoxes = pickupManager.getHpBoxList();
+		ArrayList<Weapon> listOfWeapons = weaponManager.returnWeaponsList();
+		if(a == Direction.UP)
+		{
+			//Map Counter move
+			map.setY(map.getY() + delta * 0.1f);
+			
+			//Character Counter move
+			enemyView.ch.setY(enemyView.ch.getY() + delta * 0.1f);
+			
+			//Box Counter Move
+			for(int i = 0;i < listOfAmmoBoxes.size();i++)
+				listOfAmmoBoxes.get(i).setY(listOfAmmoBoxes.get(i).getY() + delta * 0.1f);
+			
+			for(int i = 0;i < listOfHealthBoxes.size();i++)
+				listOfHealthBoxes.get(i).setY(listOfHealthBoxes.get(i).getY() + delta * 0.1f);
+			
+			//Bullet Counter Move
+			
+			for(int i = 0;i < listOfWeapons.size();i++)
+			{
+				listOfWeapons.get(i).setY(listOfWeapons.get(i).getY() + delta * 0.1f);
+			}
+		}
+		
+		if(a == Direction.DOWN)
+		{
+			//Map movement
+			map.setY(map.getY() - delta * 0.1f);
+			
+			//Character Counter move
+			enemyView.ch.setY(enemyView.ch.getY() - delta * 0.1f);
+			
+			//Box Counter Move
+			for(int i = 0;i < listOfAmmoBoxes.size();i++)
+				listOfAmmoBoxes.get(i).setY(listOfAmmoBoxes.get(i).getY() - delta * 0.1f);
+			
+			for(int i = 0;i < listOfHealthBoxes.size();i++)
+				listOfHealthBoxes.get(i).setY(listOfHealthBoxes.get(i).getY() - delta * 0.1f);
+			
+			//Bullet Counter Move
+			
+			for(int i = 0;i < listOfWeapons.size();i++)
+			{
+				listOfWeapons.get(i).setY(listOfWeapons.get(i).getY() - delta * 0.1f);
+			}
+		}
+		
+		if(a == Direction.RIGHT)
+		{
+			//Map movement
+			map.setX(map.getX() - delta * 0.1f);
+			
+			//Character Counter move
+			enemyView.ch.setX(enemyView.ch.getX() - delta * 0.1f);
+			
+			//Box Counter Move
+			for(int i = 0;i < listOfAmmoBoxes.size();i++)
+				listOfAmmoBoxes.get(i).setX(listOfAmmoBoxes.get(i).getX() - delta * 0.1f);
+			
+			for(int i = 0;i < listOfHealthBoxes.size();i++)
+				listOfHealthBoxes.get(i).setX(listOfHealthBoxes.get(i).getX() - delta * 0.1f);
+			
+			//Bullet Counter Move
+			
+			for(int i = 0;i < listOfWeapons.size();i++)
+			{
+				listOfWeapons.get(i).setX(listOfWeapons.get(i).getX() - delta * 0.1f);
+			}
+		}
+		
+		if(a == Direction.LEFT)
+		{
+			//Map movement
+			map.setX(map.getX() + delta * 0.1f);
+			
+			//Character Counter move
+			enemyView.ch.setX(enemyView.ch.getX() + delta * 0.1f);
+			
+			//Box Counter Move
+			for(int i = 0;i < listOfAmmoBoxes.size();i++)
+				listOfAmmoBoxes.get(i).setX(listOfAmmoBoxes.get(i).getX() + delta * 0.1f);
+			
+			for(int i = 0;i < listOfHealthBoxes.size();i++)
+				listOfHealthBoxes.get(i).setX(listOfHealthBoxes.get(i).getX() + delta * 0.1f);
+			
+			//Bullet Counter Move
+			
+			for(int i = 0;i < listOfWeapons.size();i++)
+			{
+				listOfWeapons.get(i).setX(listOfWeapons.get(i).getX() + delta * 0.1f);
+			}
+		}
+	}
 	@Override
 	public int getID() {
 		return 1;
@@ -188,54 +344,54 @@ public class GameManager extends BasicGameState {
 	}
 
 	public class KeyManager {
-		public boolean paused = false;
-		public boolean set = false;
-		public boolean mained = false;
-
+		public boolean paused=false;
+		public boolean set=false;
+		public boolean mained=false;
 		public void keyInput(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 			Input input = gc.getInput();
 			boolean character_is_moved = false;
 			boolean enemy_is_moved = false;
-
+			
 			// CHARACTER MOVEMENT
 			if (input.isKeyDown(Input.KEY_UP)) {
 
 				character_is_moved = chControl.move(Direction.UP, delta);
 				if (character_is_moved)
-					enemyView.ch.setShiftY(enemyView.ch.getShiftY() + delta * 0.1f);
+					counterMoveAll(Direction.UP,delta);
 
 			}
 			if (input.isKeyDown(Input.KEY_DOWN)) {
 				character_is_moved = chControl.move(Direction.DOWN, delta);
 				if (character_is_moved)
-					enemyView.ch.setShiftY(enemyView.ch.getShiftY() - delta * 0.1f);
+					counterMoveAll(Direction.DOWN,delta);
 
 			}
 			if (input.isKeyDown(Input.KEY_RIGHT)) {
 
 				character_is_moved = chControl.move(Direction.RIGHT, delta);
 				if (character_is_moved)
-					enemyView.ch.setShiftX(enemyView.ch.getShiftX() - delta * 0.1f);
+					counterMoveAll(Direction.RIGHT,delta);
 
 			}
 			if (input.isKeyDown(Input.KEY_LEFT)) {
 				character_is_moved = chControl.move(Direction.LEFT, delta);
 				if (character_is_moved)
-					enemyView.ch.setShiftX(enemyView.ch.getShiftX() + delta * 0.1f);
+					counterMoveAll(Direction.LEFT,delta);
 			}
-			// Pause Option
-
-			if (input.isKeyDown(Input.KEY_P)) {
+			//Pause Option
+			
+			if (input.isKeyDown(Input.KEY_P))
+			{
 				paused = true;
 			}
-
+			
 			if (input.isKeyPressed(Input.KEY_O)) {
-				set = true;
+				set=true;
 			}
-
+			
 			if (input.isKeyDown(Input.KEY_ESCAPE)) {
 
-				mained = true;
+				mained=true;
 
 			}
 			// RELOAD
@@ -243,7 +399,7 @@ public class GameManager extends BasicGameState {
 				heroView.ch.reload();
 				hero.reloadSound();
 			}
-
+			
 			// CHOOSE WEAPON TYPE
 			if (input.isKeyPressed(Input.KEY_NUMPAD1)) {
 				hero.setWeaponChoice(0);
@@ -281,28 +437,28 @@ public class GameManager extends BasicGameState {
 
 			if (input.isKeyPressed(Input.KEY_R)) {
 				enemyView.ch.reload();
-				enemy.reloadSound();
 			}
 
 			// ENEMY SHOOT
 			if (input.isKeyPressed(Input.KEY_LCONTROL)) {
+				RoundData.num_of_bullet_enemy++;
 				enemy.bulletSound();
 				if (direction == 0)
-					weaponManager.shoot((int) (enemy.getShiftX() - enemy.getX()),
-							(int) ((enemy.getShiftY() - enemy.getY()) + 10), enemy.getShiftX() - enemy.getX(),
-							enemy.getShiftY() - enemy.getY(), hero, enemy, enemy.getWeaponChoice());
+					weaponManager.shoot((int) (enemy.getX()),
+							(int) ((enemy.getY()) + 10),enemy.getX(),
+							enemy.getY(), hero, enemy, enemy.getWeaponChoice());
 				if (direction == 1)
-					weaponManager.shoot((int) ((enemy.getShiftX() - enemy.getX()) + 10),
-							(int) (enemy.getShiftY() - enemy.getY()), enemy.getShiftX() - enemy.getX(),
-							enemy.getShiftY() - enemy.getY(), hero, enemy, enemy.getWeaponChoice());
+					weaponManager.shoot((int) ((enemy.getX()) + 10),
+							(int) (enemy.getY()), enemy.getX(),
+							enemy.getY(), hero, enemy, enemy.getWeaponChoice());
 				if (direction == 2)
-					weaponManager.shoot((int) (enemy.getShiftX() - enemy.getX()),
-							(int) ((enemy.getShiftY() - enemy.getY()) - 10), enemy.getShiftX() - enemy.getX(),
-							enemy.getShiftY() - enemy.getY(), hero, enemy, enemy.getWeaponChoice());
+					weaponManager.shoot((int) (enemy.getX()),
+							(int) ((enemy.getY()) - 10), enemy.getX(),
+							enemy.getY(), hero, enemy, enemy.getWeaponChoice());
 				if (direction == 3)
-					weaponManager.shoot((int) ((enemy.getShiftX() - enemy.getX()) - 10),
-							(int) (enemy.getShiftY() - enemy.getY()), enemy.getShiftX() - enemy.getX(),
-							enemy.getShiftY() - enemy.getY(), hero, enemy, enemy.getWeaponChoice());
+					weaponManager.shoot((int) ((enemy.getX()) - 10),
+							(int) (enemy.getY()), enemy.getX(),
+							enemy.getY(), hero, enemy, enemy.getWeaponChoice());
 			}
 
 			// ENEMY WEAPON SELECT
@@ -324,12 +480,13 @@ public class GameManager extends BasicGameState {
 	public class MouseManager {
 		public void mouseInput(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 			if (Mouse.isButtonDown(0) && (lock == false)) {
+				RoundData.num_of_bullet_hero++;
 				hero.bulletSound();
 				isShoot = true;
 				lock = true;
 				map.getMap();
 				// Player Shoot
-				weaponManager.shoot(Mouse.getX(), 700 - Mouse.getY(), hero.getShiftX(), hero.getShiftY(), enemy, hero,
+				weaponManager.shoot(Mouse.getX(), 700 - Mouse.getY(), hero.getX(), hero.getY(), enemy, hero,
 						hero.getWeaponChoice());
 				// Enemy Shoot Auto
 			}
@@ -343,6 +500,7 @@ public class GameManager extends BasicGameState {
 
 	public boolean isGameOver() {
 		if (hero.getHealth() <= 0 || enemy.getHealth() <= 0) {
+			RoundData.round++;
 			if (hero.getHealth() < enemy.getHealth()) {
 				winner = 1;
 			} else {
