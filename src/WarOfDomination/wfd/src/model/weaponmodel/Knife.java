@@ -1,22 +1,23 @@
-package model;
+package model.weaponmodel;
 /**
  * @author Ayberk
  *
  */
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class Bullet extends Weapon{
+import model.personmodel.Moving;
+
+public class Knife extends Weapon{
 	
 	
 	float targetX,targetY,posX,posY,angle;
 	Moving ch;
 	
-	public Bullet(float targetX,float targetY,float sourceX,float sourceY,float angle,Moving ch)  throws SlickException
+	public Knife(float targetX,float targetY,float sourceX,float sourceY,float angle,Moving ch)  throws SlickException
 	{
-		super(targetX,targetY,sourceX,sourceY,angle,ch,1);
+		super(targetX,targetY,sourceX,sourceY,angle,ch,0);
 		this.targetX = targetX;
 		this.targetY = targetY;
 		this.posX = sourceX;
