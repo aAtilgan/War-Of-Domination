@@ -4,6 +4,10 @@ package view;
  *
  */
 import org.newdawn.slick.SlickException;
+
+import view.mapview.HealthBar;
+import view.mapview.WeaponBar;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,7 +17,8 @@ public class EnemyView extends MovingView {
 	HealthBar healthbar;
 	WeaponBar weaponBar;
 	int[] duration = { 200, 200, 200 };
-
+	static final int halfSizeX = 8;
+	static final int halfSizeY = 8;
 	public EnemyView(String str) throws SlickException {
 		super();
 		weaponBar = new WeaponBar();
@@ -50,13 +55,13 @@ public class EnemyView extends MovingView {
 		}
 	}
 
+
 	public void draw(GameContainer gc, Graphics g)  throws SlickException {
-		this.getMainAnimation().draw((ch.getShiftX())- ch.getX(), ((ch.getShiftY())- ch.getY()));
+		this.getMainAnimation().draw(ch.getX() - halfSizeX, ch.getY() - halfSizeY);
 		healthbar.render(gc, g, ch.getHealth(), ch.MAX_HEALTH,1);
 		weaponBar.render(gc, g, ch.getWeaponChoice(), 1,(int) ch.getAmmo(),(int) ch.returnShell());
 		
 	}
-
 	public void setAnimation(String str) {
 		if (str == "up")
 			bucky = up;

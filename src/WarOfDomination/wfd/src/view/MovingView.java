@@ -6,7 +6,7 @@ package view;
 import java.util.Observable;
 import org.newdawn.slick.*;
 
-import model.Moving;
+import model.personmodel.Moving;
 
 public class MovingView implements java.util.Observer {
 	// properties
