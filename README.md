@@ -1,7 +1,7 @@
 # War of Domination
 War of Domination is for CS 319 Project
 
-Group Members:  1-Akant Atılgan 2-Unas Sikandar Butt 3-Teymur Bakhishli 4-Kazım Ayberk Tecimer
+Group Members:  1-Akant Atılgan 2-Unas Sikandar Butt  3-Kazım Ayberk Tecimer
 
 # Description of the Project
 
