@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import model.SettingsData;
+import model.utilitiesmodel.SettingsData;
 
 public class SettingsController {
 	SettingsData data;

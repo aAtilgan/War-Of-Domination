@@ -53,8 +53,9 @@ public class MenuManager extends BasicGameState {
 		if ((posX > 400 && posX < 485) && (posY > 484 && posY < 495)) {
 			if (Mouse.isButtonDown(0)) {
 				//Play
-				sbg.getState(1).init(gc, sbg);
-				sbg.enterState(1);
+				sbg.getState(8).init(gc, sbg);
+				sbg.enterState(8);
+				// character cho
 			}
 		}
 
