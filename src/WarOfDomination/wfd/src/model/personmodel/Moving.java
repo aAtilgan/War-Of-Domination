@@ -6,6 +6,8 @@ package model.personmodel;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
+import model.RoundData;
+
 public class Moving extends java.util.Observable{
 	//Properties
 	private float positionX;
@@ -107,6 +109,14 @@ public class Moving extends java.util.Observable{
 		notifyObservers();
 		clearChanged();
 	}
+	
+	public void heal(float value)
+	{
+		if(this.health + value > this.MAX_HEALTH)
+			this.health = this.MAX_HEALTH;
+		else
+			this.health = this.health + value;
+	}
 
 	public int getCharacter_id() {
 		return character_id;
@@ -142,10 +152,91 @@ public class Moving extends java.util.Observable{
 	
 	public void reload()
 	{
-		if(this.weaponChoice == 0)
-			this.ammo = 30;
-		else if(this.weaponChoice == 2)
-			this.shell = 8;
+		if(this.character_id == 0)
+		{
+			if(this.weaponChoice == 0)
+			{
+				if(RoundData.weapon_choice_hero.get(2)== 1 || RoundData.weapon_choice_hero.get(2) == 4 || RoundData.weapon_choice_hero.get(2) == 5 )
+				{
+					this.ammo = 30;
+					reload.play(1, 0.06f);
+				}
+				else if(RoundData.weapon_choice_hero.get(2) == 3)
+				{
+					this.shell = 8;
+					reload.play(1, 0.06f);
+				}
+			}
+			else if(this.weaponChoice == 1)
+			{
+				if(RoundData.weapon_choice_hero.get(1)== 1 || RoundData.weapon_choice_hero.get(1) == 4 || RoundData.weapon_choice_hero.get(1) == 5 )
+				{
+					this.ammo = 30;
+					reload.play(1, 0.06f);
+				}
+				else if(RoundData.weapon_choice_hero.get(1) == 3)
+				{
+					this.shell = 8;
+					reload.play(1, 0.06f);
+				}
+			}
+			else if(this.weaponChoice == 2)
+			{
+				if(RoundData.weapon_choice_hero.get(0)== 1 || RoundData.weapon_choice_hero.get(0) == 4 || RoundData.weapon_choice_hero.get(0) == 5 )
+				{
+					this.ammo = 30;
+					reload.play(1, 0.06f);
+				}
+				else if(RoundData.weapon_choice_hero.get(0) == 3)
+				{
+					this.shell = 8;
+					reload.play(1, 0.06f);
+				}
+			}
+		}
+		
+		if(this.character_id == 1)
+		{
+			if(this.weaponChoice == 0)
+			{
+				if(RoundData.weapon_choice_enemy.get(2)== 1 || RoundData.weapon_choice_enemy.get(2) == 4 || RoundData.weapon_choice_enemy.get(2) == 5 )
+				{
+					this.ammo = 30;
+					reload.play(1, 0.06f);
+				}
+				else if(RoundData.weapon_choice_enemy.get(2) == 3)
+				{
+					this.shell = 8;
+					reload.play(1, 0.06f);
+				}
+			}
+			else if(this.weaponChoice == 1)
+			{
+				if(RoundData.weapon_choice_enemy.get(1)== 1 || RoundData.weapon_choice_enemy.get(1) == 4 || RoundData.weapon_choice_enemy.get(1) == 5 )
+				{
+					this.ammo = 30;
+					reload.play(1, 0.06f);
+				}
+				else if(RoundData.weapon_choice_enemy.get(1) == 3)
+				{
+					this.shell = 8;
+					reload.play(1, 0.06f);
+				}
+			}
+			else if(this.weaponChoice == 2)
+			{
+				if(RoundData.weapon_choice_enemy.get(0)== 1 || RoundData.weapon_choice_enemy.get(0) == 4 || RoundData.weapon_choice_enemy.get(0) == 5 )
+				{
+					this.ammo = 30;
+					reload.play(1, 0.06f);
+				}
+				else if(RoundData.weapon_choice_enemy.get(0) == 3)
+				{
+					this.shell = 8;
+					reload.play(1, 0.06f);
+				}
+			}
+		}
 
 	}
 	
@@ -182,29 +273,5 @@ public class Moving extends java.util.Observable{
 	{
 		return this.shell;
 	}
-	
-	//INNER FUNCTIONS
-	public void bulletSound() {
-		if(this.weaponChoice==0 && this.ammo >0)
-			sound.play(1, 0.06f);
-		else if(this.weaponChoice==2 && this.shell >0)
-			sound.play(1, 0.06f);
-		else if(this.weaponChoice==1)
-			knife_sound.play(1,0.06f);
-		else if(this.weaponChoice==0 && this.ammo ==0)
-			empty.play(1, 0.06f);
-		else if(this.weaponChoice==2 && this.shell ==0)
-			empty.play(1, 0.06f);
-	}
-	public void reloadSound() {
-		if(this.weaponChoice!=1)
-			reload.play(1, 0.06f);
-	}
-
-	public void heal(int amount)
-	{
-		this.health = this.health + amount;
-	}
-	
 
 }
