@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 
 import model.personmodel.Moving;
 /**
- * @author Ayberk
+ * @author Akant
  *
  */
 public class Weapon {

@@ -1,6 +1,6 @@
 package model.weaponmodel;
 /**
- * @author Ayberk
+ * @author Akant
  *
  */
 import org.newdawn.slick.Color;
