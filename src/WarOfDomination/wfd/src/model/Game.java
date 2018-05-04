@@ -11,11 +11,16 @@ import org.newdawn.slick.state.*;
 
 import controller.GameManager;
 import controller.MenuManager;
-import view.CreditsMenu;
-import view.GameOverView;
-import view.HowToPlayView;
-import view.PauseMenu;
-import view.SettingsMenu;
+import model.utilitiesmodel.S0und;
+import model.utilitiesmodel.SettingsData;
+import view.screenview.CharacterChoiceView;
+import view.screenview.CreditsMenu;
+import view.screenview.GameOverView;
+import view.screenview.HowToPlayView;
+import view.screenview.PauseMenu;
+import view.screenview.SettingsMenu;
+import view.screenview.StoryView;
+import view.screenview.WeaponChoiceView;
 
 public class Game extends StateBasedGame implements Observer {
 	SettingsData data;
@@ -27,7 +32,10 @@ public class Game extends StateBasedGame implements Observer {
 	public static final int gameOver=4;
 	public static final int credits=5;
 	public static final int how_to_play=6;
-	public Game(String gameName) {
+	public static final int story_mode=7;
+	public static final int character_choice=8;
+	public static final int weapon_choice=9;
+	public Game(String gameName) throws SlickException {
 		
 		super(gameName);
 		data=new SettingsData();
@@ -41,6 +49,9 @@ public class Game extends StateBasedGame implements Observer {
 		this.addState(new CreditsMenu(credits));
 		this.addState(new PauseMenu(pause));
 		this.addState(new HowToPlayView(how_to_play));
+		this.addState(new StoryView(story_mode));
+		this.addState(new CharacterChoiceView(character_choice));
+		this.addState(new WeaponChoiceView(weapon_choice));
 	}
 
 	@Override
@@ -52,7 +63,7 @@ public class Game extends StateBasedGame implements Observer {
 		this.enterState(startMenu);
 		
 		msc.volume=0.1f;
-		//msc.playTitleMusic(); MÜZÝÐÝ BURADAN AÇ
+		msc.playTitleMusic(); 
 		
 	}
 
