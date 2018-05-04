@@ -1,4 +1,5 @@
 package view.screenview;
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 /**
  * @author Ayberk
@@ -21,7 +22,6 @@ public class StoryView extends BasicGameState{
 	Input input;
 	Image background;
 	private float alpha1 = 0f;
-	private boolean flag = true;
 	public StoryView(int storyMode) {
 		// TODO Auto-generated constructor stub
 	}
@@ -36,26 +36,22 @@ public class StoryView extends BasicGameState{
 	@Override
 	public void render(GameContainer container, StateBasedGame arg1, Graphics g) throws SlickException {
 		g.drawImage(background, 0, 0, null);
-		g.setColor(new Color(1f, 1f, 1f, alpha1));
+		g.setColor(Color.cyan);
 		alpha1 = alpha1 + 0.02f;
 		g.drawString("ROUND "+ (RoundData.round-1)+ " STATISTICS", 300, 200);
 		g.drawString("Shots Fired by Hero: " + RoundData.num_of_bullet_hero, 100, 400);
+		g.drawString("Given damage by HERO: "+ RoundData.given_damage_hero, 100, 475);
+		g.drawString("Given damage by ENEMY: "+ RoundData.given_damage_enemy, 400, 475);
 		g.drawString("Shots Fired by Enemy: " + RoundData.num_of_bullet_enemy, 400, 400);
-		g.drawString("Hero Score: " + GameManager.hero_win, 100, 475);
-		g.drawString("Enemy Score: " + GameManager.enemy_win, 400, 475);
+		g.drawString("Hero Score: " + GameManager.hero_win, 100, 550);
+		g.drawString("Enemy Score: " + GameManager.enemy_win, 400, 550);
 		g.drawString("Press Enter for Next Round", 600, 575);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		
-		input= gc.getInput();
-		if(flag)
-		{
-			
-			flag =false;
-		}
-		if(input.isKeyPressed(Input.KEY_ENTER))
+		if(Keyboard.isKeyDown(Input.KEY_ENTER) == true)
 		{
 			sbg.getState(1).init(gc, sbg);
 			sbg.enterState(1);

@@ -1,5 +1,7 @@
 package view.screenview;
 
+import org.lwjgl.input.Keyboard;
+
 /**
  * @author Ayberk
  *
@@ -71,7 +73,7 @@ public class GameOverView extends BasicGameState {
 			game_over.play();
 			flag = false;
 		}
-		if (input.isKeyPressed(Input.KEY_ENTER)) {
+		if (Keyboard.isKeyDown(Input.KEY_ENTER) == true) {
 			sbg.getState(0).init(gc, sbg);
 			sbg.enterState(0);
 		}
