@@ -17,8 +17,8 @@ public class EnemyView extends MovingView {
 	HealthBar healthbar;
 	WeaponBar weaponBar;
 	int[] duration = { 200, 200, 200 };
-	static final int halfSizeX = 8;
-	static final int halfSizeY = 8;
+	static final int halfSizeX = 16;
+	static final int halfSizeY = 18;
 	public EnemyView(String str) throws SlickException {
 		super();
 		weaponBar = new WeaponBar();

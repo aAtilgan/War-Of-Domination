@@ -13,8 +13,8 @@ public class CharacterView extends MovingView {
 	// Properties
 	HealthBar healthbar;
 	WeaponBar weaponBar;
-	static final int halfSizeX = 8;
-	static final int halfSizeY = 8;
+	static final int halfSizeX = 16;
+	static final int halfSizeY = 18;
 	int[] duration = { 200, 200, 200 };
 
 	public CharacterView(String str) throws SlickException {
