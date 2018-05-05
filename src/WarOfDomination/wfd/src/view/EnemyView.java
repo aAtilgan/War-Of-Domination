@@ -1,4 +1,5 @@
 package view;
+
 /**
  * @author Ayberk
  *
@@ -14,19 +15,27 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 public class EnemyView extends MovingView {
+	// Information bars
 	HealthBar healthbar;
 	WeaponBar weaponBar;
+	// Timer
 	int[] duration = { 200, 200, 200 };
+	// Character halfsize
 	static final int halfSizeX = 16;
 	static final int halfSizeY = 18;
+
+	// Constructor
 	public EnemyView(String str) throws SlickException {
 		super();
+		// open image storages and initialize information bars
 		weaponBar = new WeaponBar();
 		healthbar = new HealthBar();
 		walkUp = new Image[3];
 		walkDown = new Image[3];
 		walkRight = new Image[3];
 		walkLeft = new Image[3];
+
+		// initialize character pictures according to RoundData.character_choice values
 
 		for (int i = 1; i < 4; i++) {
 			walkUp[i - 1] = new Image("res/" + str + "_up_" + i + ".png");
@@ -40,6 +49,8 @@ public class EnemyView extends MovingView {
 		for (int i = 1; i < 4; i++) {
 			walkRight[i - 1] = new Image("res/" + str + "_right_" + i + ".png");
 		}
+
+		// Create animations
 		up = new Animation(walkUp, duration, false);
 		down = new Animation(walkDown, duration, false);
 		left = new Animation(walkLeft, duration, false);
@@ -55,13 +66,14 @@ public class EnemyView extends MovingView {
 		}
 	}
 
-
-	public void draw(GameContainer gc, Graphics g)  throws SlickException {
+	// Draws character and characters information bars on the screen individually
+	public void draw(GameContainer gc, Graphics g) throws SlickException {
 		this.getMainAnimation().draw(ch.getX() - halfSizeX, ch.getY() - halfSizeY);
-		healthbar.render(gc, g, ch.getHealth(), ch.MAX_HEALTH,1);
-		weaponBar.render(gc, g, ch.getWeaponChoice(), 1,(int) ch.getAmmo(),(int) ch.returnShell());
-		
+		healthbar.render(gc, g, ch.getHealth(), ch.MAX_HEALTH, 1);
+		weaponBar.render(gc, g, ch.getWeaponChoice(), 1, (int) ch.getAmmo(), (int) ch.returnShell());
+
 	}
+
 	public void setAnimation(String str) {
 		if (str == "up")
 			bucky = up;
