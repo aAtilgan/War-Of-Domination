@@ -1,4 +1,5 @@
 package controller;
+
 /**
  * @author Ayberk
  *
@@ -9,22 +10,24 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
 public class MenuManager extends BasicGameState {
+	// Background image
 	Image background;
+
+	// constructor
 	public MenuManager(int startmenu) {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
+	// loads background image.
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		// TODO Auto-generated method stub
-		background=new Image("res/background.png");
+		background = new Image("res/background.png");
 	}
 
 	@Override
+	// Renders buttons and background picture
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		// TODO Auto-generated method stub
 		g.setColor(Color.white);
-		g.drawImage(background,0,0,null);
+		g.drawImage(background, 0, 0, null);
 		g.drawString("WAR OF DOMINATION", 400, 70);
 		g.drawString("Play", 450, 200);
 		g.drawString("Settings", 450, 300);
@@ -34,9 +37,10 @@ public class MenuManager extends BasicGameState {
 	}
 
 	@Override
+	// checks user inputs by calling helper method
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		// TODO Auto-generated method stub
-		checkStartMenu(gc,sbg);
+		checkStartMenu(gc, sbg);
 	}
 
 	@Override
@@ -45,42 +49,43 @@ public class MenuManager extends BasicGameState {
 		return 0;
 	}
 
+	// This helpet method checks the location of user clicks and
+	// does necessary a state transitions if user clicks on a valid button.
 	public void checkStartMenu(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		// Get mouse locations
 		int posX = Mouse.getX();
 		int posY = Mouse.getY();
-		
-		// System.out.println("X: "+ posX+ "Y: "+posY);
+
 		if ((posX > 400 && posX < 485) && (posY > 484 && posY < 495)) {
 			if (Mouse.isButtonDown(0)) {
-				//Play
+				// Enter Play state
 				sbg.getState(8).init(gc, sbg);
 				sbg.enterState(8);
-				// character cho
 			}
 		}
 
 		if ((posX > 450 && posX < 520) && (posY > 385 && posY < 395)) {
 			if (Mouse.isButtonDown(0)) {
-				//Settings
+				// Enter Settings State
 				sbg.enterState(2);
 			}
 		}
-		
+
 		if ((posX > 450 && posX < 550) && (posY > 284 && posY < 298)) {
 			if (Mouse.isButtonDown(0)) {
-				// How To Play
+				// Enter How To Play State
 				sbg.enterState(6);
 			}
 		}
 		if ((posX > 450 && posX < 512) && (posY > 180 && posY < 198)) {
 			if (Mouse.isButtonDown(0)) {
-				// CREDITS
+				// Enter CREDITS State
 				sbg.enterState(5);
 			}
 		}
 		if ((posX > 450 && posX < 484) && (posY > 85 && posY < 100)) {
 			if (Mouse.isButtonDown(0)) {
-				// EXIT
+				// Enter EXIT State
 				AL.destroy();
 				System.exit(0);
 			}
