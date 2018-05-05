@@ -1,7 +1,7 @@
 package view.mapview;
 /**
  * @author Akant
- *
+ * @author Ayberk
  */
 import org.newdawn.slick.fills.GradientFill;
 import org.newdawn.slick.geom.Rectangle;
@@ -29,6 +29,7 @@ public class WeaponBar {
 		img5 = new Image("res/Assault_Rifle.png");
 	}
 	
+	//draws weapon bars according to choice made in CharacterChoiceView screen
 	public void render(GameContainer container, Graphics g, int choice,int characterID,int ammo,int shell) throws SlickException 
 	{
 		
