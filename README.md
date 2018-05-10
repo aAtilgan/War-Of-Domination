@@ -24,7 +24,7 @@ Player starts with full health, yet their health level is going to be decreased 
 
 # Reference Game
 
-http://www.maxgames.com/play/territory-war.html
+
 
 Note*: there would be changes on the game.
 
